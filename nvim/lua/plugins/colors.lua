@@ -1,79 +1,83 @@
 return {
 	-- ===========================================================================
-	--  Color Scheme: Ayu Mirage
+	--  Colorscheme: Ayu Mirage (Balanced, Brighter, Dim Purple)
 	-- ===========================================================================
 	{
 		"Shatur/neovim-ayu",
 		name = "ayu",
 		priority = 1000,
 		config = function()
-			----------------------------------------------------------------------
-			-- 1. SETUP AYU (Mirage)
-			----------------------------------------------------------------------
 			require("ayu").setup({
-				mirage = false, -- IMPORTANT: use ayu-mirage colorscheme instead
-				overrides = {},
+				mirage = true,
+
+				overrides = {
+					-- ------------------------------------------------------------------
+					-- BACKGROUND (raised brightness, still Mirage)
+					-- ------------------------------------------------------------------
+					Normal = { bg = "#232836" },
+					NormalFloat = { bg = "#232836" },
+					SignColumn = { bg = "#232836" },
+					EndOfBuffer = { fg = "#232836" },
+
+					CursorLine = { bg = "#262b3a" },
+
+					-- ------------------------------------------------------------------
+					-- GLOBAL FOREGROUND (slightly brighter, low contrast)
+					-- ------------------------------------------------------------------
+					Comment = { fg = "#737882", italic = true },
+
+					Identifier = { fg = "#cbd0cc" },
+					Function = { fg = "#7fa7bb" },
+					Type = { fg = "#96aca8" },
+					String = { fg = "#92ad80" },
+
+					Statement = { fg = "#c9a36f" },
+					Keyword = { fg = "#c9a36f" },
+
+					Number = { fg = "#9c86b8" },
+					Boolean = { fg = "#9c86b8" },
+
+					-- ------------------------------------------------------------------
+					-- PURPLE (DIMMED, SAME HUE)
+					-- ------------------------------------------------------------------
+					Special = { fg = "#9c86b8" },
+					Constant = { fg = "#9c86b8" },
+
+					-- ------------------------------------------------------------------
+					-- LINE NUMBERS (clear but calm)
+					-- ------------------------------------------------------------------
+					LineNr = { fg = "#737882" },
+					CursorLineNr = { fg = "#c9a36f", bold = false },
+
+					-- ------------------------------------------------------------------
+					-- UI ELEMENTS (slightly brighter, no shine)
+					-- ------------------------------------------------------------------
+					VertSplit = { fg = "#313645" },
+					WinSeparator = { fg = "#313645" },
+
+					Pmenu = { bg = "#262b3a", fg = "#a3a8af" },
+					PmenuSel = { bg = "#2e3445" },
+					PmenuSbar = { bg = "#262b3a" },
+					PmenuThumb = { bg = "#3e4456" },
+
+					FloatBorder = { fg = "#3e4456", bg = "#232836" },
+
+					Folded = { fg = "#737882", bg = "NONE" },
+					FoldColumn = { fg = "#5f6470", bg = "NONE" },
+				},
+
 				options = {
 					transparency = false,
 					cursorline = true,
 				},
 			})
 
-			-- Apply the correct variant
-			vim.cmd("colorscheme ayu-mirage")
-
-			----------------------------------------------------------------------
-			-- 2. CUSTOM HIGHLIGHT OVERRIDES
-			----------------------------------------------------------------------
-			local hl = vim.api.nvim_set_hl
-
-			local comment_fg = "#7f848e"
-			local blue_accent = "#61afef"
-
-			----------------------------------------------------------------------
-			-- COMMENTS & FOLDS
-			----------------------------------------------------------------------
-			hl(0, "Comment", { fg = comment_fg, italic = true })
-
-			hl(0, "Folded", { fg = comment_fg, bg = "NONE", bold = true })
-			hl(0, "FoldColumn", { fg = "#5c6370", bg = "NONE" })
-
-			----------------------------------------------------------------------
-			-- COMPLETION MENU
-			----------------------------------------------------------------------
-			hl(0, "Pmenu", { bg = "#282c34", fg = "#abb2bf" })
-			hl(0, "PmenuSel", {
-				bg = "#3e4452",
-				fg = blue_accent,
-				bold = true,
-			})
-
-			hl(0, "CmpItemAbbrMatch", { fg = blue_accent, bold = true })
-			hl(0, "CmpItemAbbrMatchFuzzy", { link = "CmpItemAbbrMatch" })
-
-			hl(0, "CmpItemKindVariable", { fg = "#e06c75", italic = true })
-			hl(0, "CmpItemKindFunction", { fg = blue_accent, italic = true })
-			hl(0, "CmpItemKindMethod", { fg = blue_accent, italic = true })
-			hl(0, "CmpItemKind", { fg = "#c678dd", italic = true })
-			hl(0, "CmpItemMenu", { fg = "#5c6370", italic = true })
-
-			hl(0, "PmenuSbar", { bg = "#282c34" })
-			hl(0, "PmenuThumb", { bg = "#5c6370" })
-			hl(0, "FloatBorder", { fg = "#5c6370", bg = "#282c34" })
-
-			----------------------------------------------------------------------
-			-- LINE NUMBERS & INDENTS
-			----------------------------------------------------------------------
-			hl(0, "LineNr", { fg = "#4b5263" })
-			hl(0, "CursorLineNr", { fg = blue_accent, bold = true })
-
-			hl(0, "IblIndent", { fg = "#3b4048" })
-			hl(0, "IblScope", { fg = blue_accent })
+			vim.cmd.colorscheme("ayu-mirage")
 		end,
 	},
 
 	-- ===========================================================================
-	--  Icons (Mini.icons)
+	--  Icons (mini.icons)
 	-- ===========================================================================
 	{
 		"echasnovski/mini.icons",
@@ -91,20 +95,28 @@ return {
 	},
 
 	-- ===========================================================================
-	--  Status Line (Lualine – Ayu Mirage)
+	--  Statusline (Lualine – Balanced)
 	-- ===========================================================================
 	{
 		"nvim-lualine/lualine.nvim",
 		opts = {
 			options = {
+				theme = "ayu_mirage",
+				globalstatus = true,
 				icons_enabled = true,
-				theme = "ayu_mirage", -- FIXED
 				section_separators = "",
 				component_separators = "",
 			},
 			sections = {
+				lualine_c = {
+					{
+						"filename",
+						path = 1,
+						color = { fg = "#a3a8af" },
+					},
+				},
 				lualine_x = {
-					{ "%S", color = { fg = "#6FCF97" } },
+					{ "filetype" },
 				},
 			},
 		},

@@ -27,7 +27,7 @@ vim.opt.undofile = true
 
 -- === Clipboard Sync ===
 vim.schedule(function()
-  vim.opt.clipboard = "unnamedplus"
+	vim.opt.clipboard = "unnamedplus"
 end)
 
 -- =============================================================================
@@ -43,13 +43,18 @@ vim.opt.foldenable = true
 vim.opt.foldtext = "v:lua.CustomFoldText()"
 
 function _G.CustomFoldText()
-  local line = vim.fn.getline(vim.v.foldstart)
-  local line_count = vim.v.foldend - vim.v.foldstart + 1
+	local line = vim.fn.getline(vim.v.foldstart)
+	local line_count = vim.v.foldend - vim.v.foldstart + 1
 
-  line = line:gsub("^%s*", "")
+	line = line:gsub("^%s*", "")
 
-  return "    " .. line .. "    " .. line_count .. " lines"
+	return "    " .. line .. "    " .. line_count .. " lines"
 end
 
 vim.opt.showcmd = true
 vim.opt.showcmdloc = "statusline"
+
+-- n-v-c:block  -> Normal, Visual, Command modes use a steady Block
+-- i-ci-ve:ver25 -> Insert mode uses a Vertical Bar (25% width)
+-- blinkwait/off/on -> Controls the blinking speed (in milliseconds)
+vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25-blinkwait700-blinkoff400-blinkon250"
