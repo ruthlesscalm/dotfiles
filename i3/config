@@ -18,6 +18,11 @@ exec_always --no-startup-id xinput set-prop "Synaptics TM3075-002" "libinput Tap
 bindsym $mod+Shift+s exec "systemctl suspend"
 # exec_always --no-startup-id xss-lock -- i3lock -c 000000 &
 
+# Screenshots
+bindsym Print exec --no-startup-id flameshot gui
+bindsym Shift+Print exec --no-startup-id flameshot full -c
+
+
 exec_always --no-startup-id killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 #exec_always feh --bg-scale ~/.config/backgrounds/nice-blue-background.png
