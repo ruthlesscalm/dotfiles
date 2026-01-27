@@ -12,7 +12,7 @@ return {
 					cursorline = true,
 				},
 			})
-			vim.cmd("colorscheme onedark")
+			vim.cmd("colorscheme habamax")
 		end,
 	},
 

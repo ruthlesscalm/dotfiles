@@ -7,6 +7,7 @@ if not contains $HOME/.local/bin $PATH
 end
 
 
+zoxide init fish | source
     set -Ux PATH ~/.local/bin /usr/local/bin/ $PATH
 
     set -Ux EDITOR nvim

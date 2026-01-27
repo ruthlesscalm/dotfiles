@@ -136,3 +136,11 @@ vim.keymap.set("c", "<BS>", function()
 		return "<BS>" -- Otherwise, behave like a normal backspace
 	end
 end, { expr = true, replace_keycodes = true })
+
+vim.keymap.set("n", "<leader>th", function()
+	vim.cmd("colorscheme habamax")
+end, { desc = "Theme: habamax" })
+
+vim.keymap.set("n", "<leader>to", function()
+	vim.cmd("colorscheme onedark")
+end, { desc = "Theme: One Dark" })
