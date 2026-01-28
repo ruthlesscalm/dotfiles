@@ -33,6 +33,34 @@ setopt hist_verify
 setopt inc_append_history
 
 ### ================================
+### FISH-LIKE TAB COMPLETION
+### ================================
+
+# Enable completion system
+autoload -Uz compinit
+compinit
+
+# Case-insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# Menu-style completion (like fish)
+zstyle ':completion:*' menu select
+
+# Show descriptions
+zstyle ':completion:*' format '%F{cyan}%d%f'
+
+# Group results
+zstyle ':completion:*' group-name ''
+
+# Smarter matching (substring + partial)
+zstyle ':completion:*' completer _extensions _complete _approximate
+
+# Tab cycles forward, Shift-Tab cycles backward
+bindkey '^I' complete-word
+bindkey '^[[Z' reverse-menu-complete
+
+
+### ================================
 ### KEYBINDINGS
 ### ================================
 bindkey '^[[A' history-search-backward
