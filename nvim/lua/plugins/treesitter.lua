@@ -5,27 +5,35 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		opts = {
 			ensure_installed = {
-				-- Core
+				-- Core / Neovim
 				"lua",
 				"vim",
 				"vimdoc",
 				"bash",
-				"json",
 
-				-- Web dev essentials
+				-- Data / config
+				"json",
+				"jsonc",
+				"regex",
+
+				-- Web
 				"html",
 				"css",
 				"javascript",
 				"typescript",
 				"tsx",
-				"jsonc",
+				"jsdoc",
 
-				-- Backend / extras
-				"node",
-				"regex",
+				-- Backend / systems
+				"c",
+				"python",
+				"java",
+
+				-- Docs
 				"markdown",
 				"markdown_inline",
 			},
+
 			auto_install = true, -- automatically install missing parsers when entering buffer
 			ignore_install = {},
 			highlight = {
