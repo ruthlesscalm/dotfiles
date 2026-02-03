@@ -11,6 +11,10 @@
 
 set $mod Mod4
 
+exec --no-startup-id xsettingsd
+# exec --no-startup-id dunst
+# focus_on_window_activation none
+
 # Remove title bars for all windows
 for_window [class="^.*"] border pixel 2
 hide_edge_borders smart
@@ -18,6 +22,12 @@ hide_edge_borders smart
 
 gaps inner 6
 gaps outer 4
+
+# whole screen
+bindsym Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+
+# select region
+bindsym Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 
 # Hide title bars in tabbed/stacked by using a 0-size font
@@ -43,8 +53,8 @@ bindsym $mod+c exec copyq toggle
 
 
 # Screenshots
-bindsym Print exec --no-startup-id flameshot gui
-bindsym Shift+Print exec --no-startup-id flameshot full -c
+# bindsym Print exec --no-startup-id flameshot gui
+# bindsym Shift+Print exec --no-startup-id flameshot full -c
 
 
 exec_always --no-startup-id killall polybar
