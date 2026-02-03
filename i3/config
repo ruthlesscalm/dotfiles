@@ -40,6 +40,10 @@ bindsym $mod+space exec rofi -show window
 
 exec_always --no-startup-id xinput set-prop "Synaptics TM3075-002" "libinput Natural Scrolling Enabled" 1
 exec_always --no-startup-id xinput set-prop "Synaptics TM3075-002" "libinput Tapping Enabled" 1
+exec_always --no-startup-id xinput set-prop "Synaptics TM3075-002" "libinput Disable While Typing Enabled" 1
+
+bindsym $mod+Shift+t exec --no-startup-id ~/.local/bin/toggle-touchpad
+
 
 # Sleep / Suspend
 bindsym $mod+Shift+s exec --no-startup-id ~/.config/rofi/powermenu.sh
