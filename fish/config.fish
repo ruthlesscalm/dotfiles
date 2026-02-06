@@ -15,7 +15,7 @@ if status is-interactive
     set -gx EDITOR nvim
 
     # Optional: zoxide
-    # zoxide init fish | source
+    zoxide init fish | source
 
     alias bat="batcat"
 end
