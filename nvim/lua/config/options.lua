@@ -52,7 +52,7 @@ function _G.CustomFoldText()
 end
 
 vim.opt.showcmd = true
-vim.opt.showcmdloc = "statusline"
+-- vim.opt.showcmdloc = "statusline"
 
 -- n-v-c:block  -> Normal, Visual, Command modes use a steady Block
 -- i-ci-ve:ver25 -> Insert mode uses a Vertical Bar (25% width)
