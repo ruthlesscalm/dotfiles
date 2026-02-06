@@ -17,3 +17,4 @@ if status is-interactive
     # Optional: zoxide
     # zoxide init fish | source
 end
+alias bat="batcat"
