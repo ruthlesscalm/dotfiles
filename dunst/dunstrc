@@ -4,7 +4,10 @@
     follow = mouse
     
     # Position: Top Right with some padding
-    geometry = "320x60-30+50"
+    width = 320
+    height = (0, 300)
+    origin = top-right
+    offset = (30, 50)
     
     # Shrink window if content is smaller
     shrink = yes
@@ -26,6 +29,7 @@
     separator_color = frame
     
     # --- TEXT ---
+    # Increased font size to 12 (was 10)
     font = MesloLGS Nerd Font Mono 14
     
     line_height = 4
@@ -42,10 +46,13 @@
     show_indicators = yes
     
     # --- ICONS ---
+    enable_recursive_icon_lookup = true
+    
+    # Make sure you ran the sudo apt install command above!
+    icon_theme = Papirus-Dark
+    
     icon_position = left
-    max_icon_size = 48
-    # Standard icon paths
-    icon_path = /usr/share/icons/gnome/24x24/status/:/usr/share/icons/gnome/24x24/devices/
+    max_icon_size = 48 
 
     # --- MOUSE ---
     mouse_left_click = close_current
