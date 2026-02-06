@@ -12,7 +12,7 @@
 set $mod Mod4
 
 exec --no-startup-id xsettingsd
-# exec --no-startup-id dunst
+exec --no-startup-id dunst
 # focus_on_window_activation none
 
 # Remove title bars for all windows
@@ -102,12 +102,26 @@ exec --no-startup-id blueman-applet
 bindsym $mod+Shift+b exec kitty -e bluetoothctl
 
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# set $refresh_i3status killall -SIGUSR1 i3status
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# Use pamixer to limit volume to 100%
+set $refresh_i3status killall -SIGUSR1 i3status
+
+# Raise Volume (pamixer -i 5 automatically caps at 100%)
+bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5 && $refresh_i3status
+
+# Lower Volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5 && $refresh_i3status
+
+# Mute
+bindsym XF86AudioMute exec --no-startup-id pamixer -t && $refresh_i3status
+
+# Mic Mute (You can keep using pactl for this, or use pamixer --default-source -t)
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
