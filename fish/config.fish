@@ -1,16 +1,19 @@
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+    # Cursor style (no fat cursor)
+    set -g fish_cursor_default line
+    set -g fish_cursor_insert line
+    set -g fish_cursor_replace_one underscore
+    set -g fish_cursor_visual block
 
-    # add ~/.local/bin to PATH
-if not contains $HOME/.local/bin $PATH
-    set -Ux PATH $HOME/.local/bin $PATH
-end
-
-
-zoxide init fish | source
-    set -Ux PATH ~/.local/bin /usr/local/bin/ $PATH
-
-    set -Ux EDITOR nvim
-
+    # Silence greeting
     set -g fish_greeting
+
+    # PATH (safe, no duplicates)
+    fish_add_path ~/.local/bin /usr/local/bin
+
+    # Editor
+    set -gx EDITOR nvim
+
+    # Optional: zoxide
+    # zoxide init fish | source
 end
