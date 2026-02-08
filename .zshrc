@@ -17,7 +17,6 @@ source ~/.powerlevel10k/powerlevel10k.zsh-theme
 alias reload-zsh="source ~/.zshrc"
 alias edit-zsh="nvim ~/.zshrc"
 alias python="python3"
-alias ls="eza --icons=always"
 
 ### ================================
 ### HISTORY (Fish-like behavior)
@@ -124,10 +123,6 @@ y() {
   rm -f "$tmp"
 }
 
-### ================================
-### THEFUCK (command fixer)
-### ================================
-eval "$(thefuck --alias)"
 
 ### ================================
 ### NVM (Node.js)
