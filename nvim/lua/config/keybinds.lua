@@ -111,15 +111,23 @@ vim.keymap.set("i", "<C-BS>", "<C-w>", { desc = "Delete previous word" })
 -- vim.keymap.set("i", "<S-Del>", "<Del>", { desc = "Forward Delete" })
 -- vim.keymap.set("c", "<S-Del>", "<Del>", { desc = "Forward Delete in Command Mode" })
 
--- LSP Signature Help (Show function arguments)
-vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, { desc = "Show function signature" })
 
+-- Hover info (Tailwind, types, docs)
 vim.keymap.set(
   "n",
-  "<leader>tw",
+  "<leader>h",
   vim.lsp.buf.hover,
-  { desc = "Tailwind class info" }
+  { desc = "LSP Hover (docs )" }
 )
+
+-- Signature help (functions, params)
+vim.keymap.set(
+  "n",
+  "<leader>k",
+  vim.lsp.buf.signature_help,
+  { desc = "LSP Signature Help" }
+)
+
 
 
 -- Window Navigation (Leader + Tab)
