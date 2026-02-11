@@ -18,7 +18,7 @@ return {
 
     require("luasnip.loaders.from_vscode").lazy_load()
 
-    -- 1. ICONS TABLE
+    -- ICONS
     local kind_icons = {
       Text = "",
       Method = "󰆧",
@@ -48,35 +48,24 @@ return {
     }
 
     cmp.setup({
-      -- 2. SELECTION BEHAVIOR
       completion = {
         completeopt = "menu,menuone,noinsert",
         keyword_length = 1,
       },
+
       sorting = {
         priority_weight = 2,
         comparators = {
           cmp.config.compare.offset,
           cmp.config.compare.exact,
           cmp.config.compare.score,
-
           cmp.config.compare.recently_used,
           cmp.config.compare.locality,
-
           cmp.config.compare.kind,
           cmp.config.compare.length,
           cmp.config.compare.order,
         },
       },
-      sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "path" },
-      }, {
-        { name = "buffer", keyword_length = 3 },
-      }),
-
-
 
       snippet = {
         expand = function(args)
@@ -84,8 +73,6 @@ return {
         end,
       },
 
-      -- 3. WINDOW STYLING
-      -- These automatically link to the Pmenu/Blue colors we set in colors.lua
       window = {
         completion = cmp.config.window.bordered({
           border = "rounded",
@@ -96,17 +83,14 @@ return {
         }),
       },
 
-      -- 4. FORMATTING
       formatting = {
         format = function(entry, vim_item)
-          -- Icon + Kind Name
           vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
           vim_item.menu = ""
           return vim_item
         end,
       },
 
-      -- 5. MAPPINGS
       mapping = cmp.mapping.preset.insert({
         ["<M-b>"] = cmp.mapping.scroll_docs(-4),
         ["<M-f>"] = cmp.mapping.scroll_docs(4),
@@ -116,8 +100,23 @@ return {
         ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
 
-        -- Enter confirms like VS Code
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
+
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if luasnip.locally_jumpable(1) then
+            luasnip.jump(1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if luasnip.locally_jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
       }),
 
       sources = cmp.config.sources({
@@ -125,7 +124,7 @@ return {
         { name = "luasnip" },
         { name = "path" },
       }, {
-        { name = "buffer" },
+        { name = "buffer", keyword_length = 3 },
       }),
     })
   end,
