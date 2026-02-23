@@ -1,4 +1,5 @@
 7zip
+acpi
 acpi-support
 acpid
 adduser
@@ -43,6 +44,7 @@ firmware-intel-graphics
 firmware-iwlwifi
 fish
 flameshot
+flatpak
 fzf
 gcc
 gcc-14-base
@@ -54,6 +56,7 @@ grub-common
 grub-efi-amd64
 gzip
 hostname
+htop
 i3-wm
 i3lock
 i3status
@@ -62,9 +65,11 @@ init
 init-system-helpers
 initramfs-tools
 installation-report
+intel-gpu-tools
 intel-microcode
 iproute2
 iputils-ping
+jmtpfs
 jq
 keyboard-configuration
 keyd
@@ -74,6 +79,7 @@ laptop-detect
 less
 linux-image-amd64
 linux-sysctl-defaults
+lm-sensors
 locales
 login
 login.defs
@@ -82,6 +88,7 @@ logsave
 mawk
 mount
 mpv
+mtp-tools
 nano
 ncurses-base
 ncurses-bin
@@ -112,13 +119,16 @@ resvg
 rfkill
 ripgrep
 rofi
+s-tui
 scrot
 sed
 sensible-utils
 shim-signed
 sqv
+stress-ng
 suckless-tools
 sudo
+sysbench
 systemd
 systemd-sysv
 sysvinit-utils
@@ -146,6 +156,7 @@ whiptail
 wireless-tools
 wireplumber
 wpasupplicant
+x11vnc
 xclip
 xinit
 xinput
@@ -158,11 +169,3 @@ zsh
 zsh-autosuggestions
 zsh-syntax-highlighting
 zstd
-
-
--- manual install 
-nvim
-bruno
-yazi
-firefox
-chrome
