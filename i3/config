@@ -23,17 +23,12 @@ hide_edge_borders smart
 gaps inner 6
 gaps outer 4
 
-# whole screen
-bindsym Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-
-# select region
-bindsym Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym Print exec --no-startup-id maim ~/Pictures/$(date +%F_%T).png | xclip -selection clipboard -t image/png
+bindsym Shift+Print exec --no-startup-id maim -s ~/Pictures/$(date +%F_%T).png | xclip -selection clipboard -t image/png
 
 
 # Hide title bars in tabbed/stacked by using a 0-size font
 font pango:MesloLGM Nerd Font Mono 0
-
-exec --no-startup-id clipman
 
 
 bindsym $mod+space exec rofi -show window
