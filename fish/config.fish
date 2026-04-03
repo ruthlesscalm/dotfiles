@@ -18,4 +18,6 @@ if status is-interactive
     zoxide init fish | source
 
     alias bat="batcat"
+
+    status --is-interactive; and nvm use 20
 end
