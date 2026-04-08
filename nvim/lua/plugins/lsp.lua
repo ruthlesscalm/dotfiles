@@ -81,13 +81,36 @@ return {
           "lua_ls",
         },
         handlers = {
+          -- Default handler (for all servers)
           function(server_name)
             require("lspconfig")[server_name].setup({
               on_attach = on_attach,
               capabilities = capabilities,
             })
           end,
-        },
+
+          -- TailwindCSS special config (THIS is the fix)
+          ["tailwindcss"] = function()
+            require("lspconfig").tailwindcss.setup({
+              on_attach = on_attach,
+              capabilities = capabilities,
+              filetypes = {
+                "html",
+                "css",
+                "javascript",
+                "javascriptreact",
+                "typescript",
+                "typescriptreact",
+              },
+              init_options = {
+                userLanguages = {
+                  javascript = "html",
+                  typescript = "html",
+                },
+              },
+            })
+          end,
+        }
       })
     end,
   },

@@ -4,6 +4,12 @@
 --  This file controls the look and feel of Neovim.
 --  It sets up line numbers, indentation, colors, and core behavior.
 
+vim.filetype.add({
+  extension = {
+    jsx = "javascriptreact",
+    tsx = "typescriptreact",
+  },
+})
 -- === UI & Appearance ===
 vim.opt.number = true
 vim.opt.relativenumber = true
