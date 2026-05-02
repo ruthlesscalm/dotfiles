@@ -10,7 +10,7 @@ local snippets = require("LuaSnip.javascript")
 -- Add JSX-specific snippets
 -- <Component />
 table.insert(snippets, s("com", {
-  t("<"), i(1, "Component"), t(" "), i(2), t(" />"),
+  t("<"), i(1, "Component"), t(""), i(2), t(" />"),
 }))
 
 -- <tag></tag> (Mirrored)
