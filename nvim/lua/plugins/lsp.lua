@@ -1,21 +1,15 @@
 return {
-  -- 1. Java Support (JDTLS)
   {
     "mfussenegger/nvim-jdtls",
     ft = "java",
-    -- Note: Real Java power requires a complex setup function here.
-    -- For now, we load the plugin so it is available.
   },
-
-  -- 2. Main LSP Configuration
   {
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp", -- Required to link LSP with Auto-Completion
+      "hrsh7th/cmp-nvim-lsp",
     },
-
     config = function()
       -- A. SETUP MASON
       require("mason").setup({
@@ -28,89 +22,71 @@ return {
         },
       })
 
-      -- B. CAPABILITIES (Wire up Autocomplete)
+      -- B. CAPABILITIES
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      -- C. KEYBINDINGS (Run when LSP attaches)
+      -- C. KEYBINDINGS
       local on_attach = function(client, bufnr)
-        local opts = { buffer = bufnr, silent = true }
-
-        -- Navigation
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition", buffer = bufnr })
         vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation", buffer = bufnr })
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "Go to Implementation", buffer = bufnr })
-
-        -- Refactoring
-        -- Note: We use <leader>rn for IncRename in utils.lua, but we keep this as a backup
         vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename Symbol", buffer = bufnr })
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action", buffer = bufnr })
-
-        -- Diagnostics
-        vim.keymap.set(
-          "n",
-          "<leader>d",
-          vim.diagnostic.open_float,
-          { desc = "Show Diagnostics", buffer = bufnr }
-        )
+        vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show Diagnostics", buffer = bufnr })
         vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
         vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
       end
 
-      -- D. SETUP SERVERS
+      -- D. GLOBAL ON_ATTACH + CAPABILITIES via vim.lsp.config
+      vim.lsp.config("*", {
+        on_attach = on_attach,
+        capabilities = capabilities,
+      })
+
+      -- E. PER-SERVER OVERRIDES
+      vim.lsp.config("ts_ls", {
+        init_options = {
+          hostInfo = "neovim",
+          preferences = {
+            importModuleSpecifierPreference = "non-relative",
+          },
+        },
+        settings = {
+          javascript = {
+            preferences = {
+              importModuleSpecifier = "non-relative",
+            },
+          },
+          typescript = {
+            preferences = {
+              importModuleSpecifier = "non-relative",
+            },
+          },
+        },
+      })
+      vim.lsp.config("tailwindcss", {
+        filetypes = {
+          "html", "css",
+          "javascript", "javascriptreact",
+          "typescript", "typescriptreact",
+        },
+        init_options = {
+          userLanguages = {
+            javascript = "html",
+            typescript = "html",
+          },
+        },
+      })
+
+      -- F. MASON-LSPCONFIG (just handles installation + enabling)
       require("mason-lspconfig").setup({
         ensure_installed = {
-          -- C / C++
-          "clangd",
-
-          -- Python
-          "pyright",
-
-          -- JavaScript / JSX / TS / TSX
-          "ts_ls",
-          "eslint",
-
-          -- Web
-          "html",
-          "cssls",
-          "tailwindcss",
-
-          -- Java
-          "jdtls",
-
-          -- Lua (for Neovim itself)
-          "lua_ls",
+          "clangd", "pyright",
+          "ts_ls", "eslint",
+          "html", "cssls", "tailwindcss",
+          "jdtls", "lua_ls",
         },
-        handlers = {
-          -- Default handler (for all servers)
-          function(server_name)
-            require("lspconfig")[server_name].setup({
-              on_attach = on_attach,
-              capabilities = capabilities,
-            })
-          end,
-
-          -- TailwindCSS special config (THIS is the fix)
-          ["tailwindcss"] = function()
-            require("lspconfig").tailwindcss.setup({
-              on_attach = on_attach,
-              capabilities = capabilities,
-              filetypes = {
-                "html",
-                "css",
-                "javascript",
-                "javascriptreact",
-                "typescript",
-                "typescriptreact",
-              },
-              init_options = {
-                userLanguages = {
-                  javascript = "html",
-                  typescript = "html",
-                },
-              },
-            })
-          end,
-        }
+        -- No handlers needed — vim.lsp.config above handles everything
       })
     end,
   },
