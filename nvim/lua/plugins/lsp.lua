@@ -64,6 +64,7 @@ return {
           },
         },
       })
+
       vim.lsp.config("tailwindcss", {
         filetypes = {
           "html", "css",
@@ -78,6 +79,9 @@ return {
         },
       })
 
+      -- Enable gopls (with default configurations provided by lspconfig)
+      vim.lsp.config("gopls", {})
+
       -- F. MASON-LSPCONFIG (just handles installation + enabling)
       require("mason-lspconfig").setup({
         ensure_installed = {
@@ -85,6 +89,7 @@ return {
           "ts_ls", "eslint",
           "html", "cssls", "tailwindcss",
           "jdtls", "lua_ls",
+          "gopls",
         },
         -- No handlers needed — vim.lsp.config above handles everything
       })

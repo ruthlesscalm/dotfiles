@@ -9,7 +9,7 @@ if status is-interactive
     set -g fish_greeting
 
     # PATH (safe, no duplicates)
-    fish_add_path ~/.local/bin /usr/local/bin
+    fish_add_path ~/.local/bin /usr/local/bin $HOME/go/bin
 
     # Editor
     set -gx EDITOR nvim
