@@ -132,3 +132,5 @@ export NVM_DIR="$HOME/.nvm"
 
 alias bat="batcat"
 export PATH=$PATH:$HOME/go/bin
+
+

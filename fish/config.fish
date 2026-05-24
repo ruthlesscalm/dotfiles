@@ -21,3 +21,5 @@ if status is-interactive
 
     status --is-interactive; and nvm use 20
 end
+
+
