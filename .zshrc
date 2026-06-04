@@ -134,3 +134,7 @@ alias bat="batcat"
 export PATH=$PATH:$HOME/go/bin
 
 
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/pavan/.local/bin:$PATH"
