@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 ### ================================
-### PROMPT (Powerlevel10k)
+### theme (Powerlevel10k)
 ### ================================
 source ~/.powerlevel10k/powerlevel10k.zsh-theme
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
@@ -19,7 +19,7 @@ alias edit-zsh="nvim ~/.zshrc"
 alias python="python3"
 
 ### ================================
-### HISTORY (Fish-like behavior)
+### HISTORY 
 ### ================================
 HISTFILE=$HOME/.zhistory
 HISTSIZE=10000
@@ -32,7 +32,7 @@ setopt hist_verify
 setopt inc_append_history
 
 ### ================================
-### FISH-LIKE TAB COMPLETION
+### TAB COMPLETION
 ### ================================
 
 # Enable completion system
@@ -60,13 +60,22 @@ bindkey '^[[Z' reverse-menu-complete
 
 
 ### ================================
-### KEYBINDINGS
+### KEYBINDINGS (Fish-like Up/Down)
 ### ================================
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
+# Load the substring search widgets
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
 
+# Bind Up Arrow
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[OA' up-line-or-beginning-search
+
+# Bind Down Arrow
+bindkey '^[[B' down-line-or-beginning-search
+bindkey '^[OB' down-line-or-beginning-search
 ### ================================
-### PLUGINS (Fish magic)
+### PLUGINS 
 ### ================================
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -87,21 +96,6 @@ export FZF_DEFAULT_OPTS="
 --color=info:#7dcfff,prompt:#7dcfff,pointer:#7dcfff
 "
 
-### ================================
-### BAT + EZA PREVIEWS
-### ================================
-export BAT_THEME=tokyonight_night
-
-show_preview='
-if [ -d {} ]; then
-  eza --tree --color=always {} | head -200
-else
-  batcat --style=numbers --color=always --line-range :500 {}
-fi
-'
-
-export FZF_CTRL_T_OPTS="--preview '$show_preview'"
-export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
 ### ================================
 ### ZOXIDE (Smart cd like fish)
@@ -134,7 +128,9 @@ alias bat="batcat"
 export PATH=$PATH:$HOME/go/bin
 
 
-
+alias ls='ls --color=auto -F'
+alias ll='ls -la'
+alias la='ls -A'
 
 # Added by Antigravity CLI installer
 export PATH="/home/pavan/.local/bin:$PATH"
