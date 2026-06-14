@@ -129,7 +129,7 @@ export PATH=$PATH:$HOME/go/bin
 
 
 alias ls='ls --color=auto -F'
-alias ll='ls -la'
+alias ll='ls -lA'
 alias la='ls -A'
 
 # Added by Antigravity CLI installer
