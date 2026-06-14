@@ -94,6 +94,9 @@ export FZF_DEFAULT_OPTS="
 --color=fg:#c0caf5,bg:#1a1b26,hl:#7aa2f7
 --color=fg+:#c0caf5,bg+:#24283b,hl+:#7aa2f7
 --color=info:#7dcfff,prompt:#7dcfff,pointer:#7dcfff
+--preview 'batcat --color=always {}'
+--preview-window=right:60%:hidden
+--bind '?:toggle-preview'
 "
 
 
