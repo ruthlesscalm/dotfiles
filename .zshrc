@@ -86,6 +86,13 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 
+### ================================
+### FZF (Fuzzy everything)
+### ================================
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
+# 1. Defaults (Ctrl+T stays local, Alt+C for local directories)
 export FZF_DEFAULT_COMMAND="fdfind --hidden --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fdfind --type d --hidden --exclude .git"
@@ -94,11 +101,32 @@ export FZF_DEFAULT_OPTS="
 --color=fg:#c0caf5,bg:#1a1b26,hl:#7aa2f7
 --color=fg+:#c0caf5,bg+:#24283b,hl+:#7aa2f7
 --color=info:#7dcfff,prompt:#7dcfff,pointer:#7dcfff
---preview 'batcat --color=always {}'
+--preview 'batcat --color=always {} 2>/dev/null || file {}'
 --preview-window=right:60%:hidden
 --bind '?:toggle-preview'
 "
 
+# 2. Custom Shortcut: Ctrl + H (Search everything from HOME directory)
+fzf-home-search-widget() {
+  local selected=$(fdfind --hidden --exclude .git . $HOME | fzf +m)
+  if [[ -n "$selected" ]]; then
+    LBUFFER="${LBUFFER}${selected}"
+  fi
+  zle reset-prompt
+}
+zle -N fzf-home-search-widget
+bindkey '^H' fzf-home-search-widget
+
+# 3. Custom Shortcut: Ctrl + Y (Search everything from SYSTEM ROOT)
+fzf-root-search-widget() {
+  local selected=$(fdfind --hidden --exclude .git . / | fzf +m)
+  if [[ -n "$selected" ]]; then
+    LBUFFER="${LBUFFER}${selected}"
+  fi
+  zle reset-prompt
+}
+zle -N fzf-root-search-widget
+bindkey '^Y' fzf-root-search-widget
 
 ### ================================
 ### ZOXIDE (Smart cd like fish)
@@ -137,3 +165,6 @@ alias la='ls -A'
 
 # Added by Antigravity CLI installer
 export PATH="/home/pavan/.local/bin:$PATH"
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
