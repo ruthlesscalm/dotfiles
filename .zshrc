@@ -168,3 +168,5 @@ export PATH="/home/pavan/.local/bin:$PATH"
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+export PATH="/usr/sbin/:/sbin/:$PATH"
