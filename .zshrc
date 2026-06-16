@@ -86,12 +86,6 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 
-### ================================
-### FZF (Fuzzy everything)
-### ================================
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
-
 # 1. Defaults (Ctrl+T stays local, Alt+C for local directories)
 export FZF_DEFAULT_COMMAND="fdfind --hidden --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -169,4 +163,4 @@ export PATH="/home/pavan/.local/bin:$PATH"
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-export PATH="/usr/sbin/:/sbin/:$PATH"
+export PATH="/usr/sbin:/sbin:$PATH"
