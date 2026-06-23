@@ -116,7 +116,7 @@ fzf-home-search-widget() {
   zle reset-prompt
 }
 zle -N fzf-home-search-widget
-bindkey '^U' fzf-home-search-widget
+bindkey '^[u' fzf-home-search-widget
 
 # 3. Custom Shortcut: Ctrl + Y (Search everything from SYSTEM ROOT)
 fzf-root-search-widget() {
@@ -127,7 +127,7 @@ fzf-root-search-widget() {
   zle reset-prompt
 }
 zle -N fzf-root-search-widget
-bindkey '^Y' fzf-root-search-widget
+bindkey '^[y' fzf-root-search-widget
 
 ### ================================
 ### ZOXIDE (Smart cd like fish)
