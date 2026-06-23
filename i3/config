@@ -39,6 +39,8 @@ exec_always --no-startup-id xinput set-prop "Synaptics TM3075-002" "libinput Dis
 
 bindsym $mod+Shift+t exec --no-startup-id ~/.local/bin/toggle-touchpad
 
+# Background battery threshold notification watcher
+exec_always --no-startup-id ~/.local/bin/battery-canary
 
 # Sleep / Suspend
 bindsym $mod+Shift+s exec --no-startup-id ~/.config/rofi/powermenu.sh
