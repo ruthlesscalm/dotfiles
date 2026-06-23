@@ -64,6 +64,10 @@ bindsym $mod+Shift+f exec thunar
 
 exec_always --no-startup-id killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
+
+# Toggle Polybar visibility
+bindsym $mod+p exec --no-startup-id polybar-msg cmd toggle
+
 #exec_always feh --bg-scale ~/.config/backgrounds/nice-blue-background.png
 bindsym $mod+d exec rofi -show combi
 
