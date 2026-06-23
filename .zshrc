@@ -1,7 +1,13 @@
+# Enable emacs-mode in Zsh
+bindkey -e
+
+
 ### ================================
 ### FAST STARTUP (Powerlevel10k)
 ### ================================
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+if [[ -n "$TMUX" ]]; then
+  # Silence instant prompt completely inside tmux to stop layout glitches
+elif [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
@@ -17,6 +23,7 @@ source ~/.powerlevel10k/powerlevel10k.zsh-theme
 alias reload-zsh="source ~/.zshrc"
 alias edit-zsh="nvim ~/.zshrc"
 alias python="python3"
+alias tmux="tmux -u"
 
 ### ================================
 ### HISTORY 
@@ -109,7 +116,7 @@ fzf-home-search-widget() {
   zle reset-prompt
 }
 zle -N fzf-home-search-widget
-bindkey '^H' fzf-home-search-widget
+bindkey '^U' fzf-home-search-widget
 
 # 3. Custom Shortcut: Ctrl + Y (Search everything from SYSTEM ROOT)
 fzf-root-search-widget() {
@@ -164,3 +171,19 @@ export PATH="/home/pavan/.local/bin:$PATH"
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 export PATH="/usr/sbin:/sbin:$PATH"
+
+# Fix Ctrl+Left and Ctrl+Right to move word-by-word
+# bindkey '^[[1;5D' backward-word
+# bindkey '^[[1;5C' forward-word
+
+
+# Ensure beam cursor on initial prompt startup
+# echo -ne '\e[6 q'
+
+### ================================
+### TERMINAL CURSOR RESET HOOK
+### ================================
+# Force a vertical beam cursor every single time the Zsh prompt redraws
+function precmd() {
+  echo -ne '\e[6 q'
+}
