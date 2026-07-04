@@ -164,6 +164,9 @@ alias ls='ls --color=auto -F'
 alias ll='ls -lA'
 alias la='ls -A'
 
+alias trashp='trash-put'
+alias trashl='trash-list'
+
 # Added by Antigravity CLI installer
 export PATH="/home/pavan/.local/bin:$PATH"
 
