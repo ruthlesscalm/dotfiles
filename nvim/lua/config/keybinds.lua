@@ -159,3 +159,4 @@ end, { desc = "Theme: habamax" })
 vim.keymap.set("n", "<leader>to", function()
   vim.cmd("colorscheme onedark")
 end, { desc = "Theme: One Dark" })
+

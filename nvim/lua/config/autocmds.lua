@@ -58,3 +58,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end
   end,
 })
+
+-- Autosave
+vim.api.nvim_create_autocmd("BufLeave", {
+  pattern = "*",
+  command = "silent! update",
+  desc = "Autosave file when leaving buffer",
+})
