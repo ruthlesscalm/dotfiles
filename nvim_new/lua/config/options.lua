@@ -10,3 +10,5 @@ vim.opt.shiftwidth = 2
 vim.opt.smartindent = true
 
 vim.opt.undofile = true
+
+vim.opt.signcolumn = "yes"
