@@ -24,9 +24,9 @@ return {
 			desc = "Buffers",
 		},
 		{
-			"<leader>fh",
-			builtin.help_tags,
-			desc = "help tags",
+			"<leader>fd",
+			builtin.diagnostics,
+			desc = "diagnostics"
 		},
 	},
 }
