@@ -1,0 +1,14 @@
+#!/bin/bash
+
+DEVICE="Synaptics TM3075-002"
+
+STATE=$(xinput list-props "$DEVICE" | grep "Device Enabled" | awk '{print $NF}')
+
+if [ "$STATE" -eq 1 ]; then
+  xinput disable "$DEVICE"
+  notify-send "Touchpad OFF"
+else
+  xinput enable "$DEVICE"
+  notify-send "Touchpad ON"
+fi
+

@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+DOTFILES="$HOME/.dotfiles/keyd"
+LINK="/etc/keyd/default.conf"
+
+layouts=(
+    qwerty
+    gallium
+    pine
+)
+
+current="$(basename "$(readlink -f "$LINK")" .conf)"
+
+layout_exists() {
+    local layout="$1"
+
+    for l in "${layouts[@]}"; do
+        [[ "$l" == "$layout" ]] && return 0
+    done
+
+    return 1
+}
+
+next_layout() {
+    for i in "${!layouts[@]}"; do
+        if [[ "${layouts[$i]}" == "$current" ]]; then
+            echo "${layouts[$(((i + 1) % ${#layouts[@]}))]}"
+            return
+        fi
+    done
+
+    # Fallback if current layout isn't recognized
+    echo "${layouts[0]}"
+}
+
+if [[ $# -gt 0 ]]; then
+    next="$1"
+
+    if ! layout_exists "$next"; then
+        echo "Unknown layout: $next"
+        echo
+        echo "Available layouts:"
+        printf '  • %s\n' "${layouts[@]}"
+        exit 1
+    fi
+else
+    next="$(next_layout)"
+fi
+
+if [[ "$current" == "$next" ]]; then
+    echo "Already using '$current'."
+    exit 0
+fi
+
+echo "Current layout : $current"
+echo "Switching to   : $next"
+echo
+
+sudo -p "Password: " -v
+
+sudo ln -sfn "$DOTFILES/$next.conf" "$LINK"
+sudo keyd.rvaiya reload
+
+notify-send \
+    "Keyboard Layout" \
+    "$current → $next"
+
+echo
+echo "✓ Successfully switched to '$next'."

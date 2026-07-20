@@ -24,6 +24,7 @@ alias reload-zsh="source ~/.zshrc"
 alias edit-zsh="nvim ~/.zshrc"
 alias python="python3"
 alias tmux="tmux -u"
+alias layout="toggle-keyboard-layout"
 
 ### ================================
 ### HISTORY 
