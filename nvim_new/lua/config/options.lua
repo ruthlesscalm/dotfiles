@@ -13,8 +13,11 @@ vim.opt.smartindent = true
 
 vim.opt.undofile = true
 
-vim.opt.signcolumn = "auto:2"
+vim.opt.signcolumn = "auto:1"
 vim.opt.wrap = false
 
 -- netrw
 vim.g.netrw_bufsettings = "noma nomod nu rnu nobl nowrap ro" -- nomodifiable nomidified line_number relative_number nobuflisted nowrap ro
+
+vim.opt.splitright = true
+vim.opt.splitbelow = true
