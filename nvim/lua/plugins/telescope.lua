@@ -1,48 +1,70 @@
+local builtin = require("telescope.builtin")
+
 return {
-  "nvim-telescope/telescope.nvim",
-  dependencies = { "nvim-lua/plenary.nvim" },
-  config = function()
-    local telescope = require("telescope")
-    local builtin = require("telescope.builtin")
-
-    telescope.setup({
-      defaults = {
-        file_ignore_patterns = {
-          "node_modules",
-          ".git/",
-        },
-      },
-      pickers = {
-        find_files = {
-          hidden = true, -- include hidden files
-        },
-      },
-    })
-
-    -- Keymaps
-    vim.keymap.set("n", "<leader>ff", function()
-      builtin.find_files({
-        hidden = true,
-      })
-    end, { desc = "Find Files" })
-
-    vim.keymap.set("n", "<leader>fg", function()
-      builtin.live_grep({
-        additional_args = function()
-          return { "--hidden" }
-        end,
-      })
-    end, { desc = "Live Grep" })
-
-    vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find Buffers" })
-    vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find Help" })
-
-    -- Errors (current buffer)
-    vim.keymap.set("n", "<leader>fe", function()
-      builtin.diagnostics({ bufnr = 0 })
-    end, { desc = "Find Errors (Current Buffer)" })
-
-    -- Errors (workspace)
-    vim.keymap.set("n", "<leader>fa", builtin.diagnostics, { desc = "Find All Errors" })
-  end,
+	"nvim-telescope/telescope.nvim",
+	version = "*",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		-- optional but recommended
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	},
+	keys = {
+		{
+			"<leader>ff",
+			builtin.find_files,
+			desc = "Find Files",
+		},
+		{
+			"<leader>fF",
+			function()
+				builtin.find_files({
+					hidden = true,
+					no_ignore = true,
+				})
+			end,
+			desc = "Find All Files",
+		},
+		{
+			"<leader>fg",
+			builtin.live_grep,
+			desc = "Live Grep",
+		},
+		{
+			"<leader>fb",
+			builtin.buffers,
+			desc = "Buffers",
+		},
+		{
+			"<leader>fd",
+			function()
+				builtin.diagnostics({ bufnr = 0 })
+			end,
+			desc = "diagnostics (Current Buffer)",
+		},
+		{
+			"<leader>fD",
+			builtin.diagnostics,
+			desc = "diagnostics (workspace)",
+		},
+		{
+			"<leader>fo",
+			builtin.oldfiles,
+			desc = "Recent Files",
+		},
+		{
+			"<leader>fc",
+			builtin.git_commits,
+			desc = "Git Commits",
+		},
+		{
+			"<leader>fs",
+			builtin.git_status,
+			desc = "Git Status",
+		},
+    {
+			"<leader>fr",
+			builtin.resume,
+			desc = "Resume last telescope",
+		},
+	},
 }
