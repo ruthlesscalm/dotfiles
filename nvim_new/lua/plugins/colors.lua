@@ -1,5 +1,18 @@
 return {
 	{
+		"edeneast/nightfox.nvim",
+		priority = 1000,
+		config = function()
+			require("nightfox").setup({
+				integrations = {
+					blink_cmp = true,
+					telescope = true,
+				},
+			})
+			vim.cmd.colorscheme("nightfox")
+		end,
+	},
+	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 	},
@@ -10,46 +23,13 @@ return {
 		"AlexvZyl/nordic.nvim",
 	},
 	{
-		"bluz71/vim-nightfly-colors",
-		name = "nightfly",
-	},
-	{
-		"bluz71/vim-moonfly-colors",
-		name = "moonfly",
-	},
-	{
-		"shatur/neovim-ayu",
-	},
-	{
 		"olimorris/onedarkpro.nvim",
 	},
-	{
-		"Mofiqul/dracula.nvim",
-	},
-
 	{
 		"rebelot/kanagawa.nvim",
 	},
 	{
-		"edeneast/nightfox.nvim",
-	},
-	{
-		"navarasu/onedark.nvim",
-	},
-	{
 		"sainnhe/gruvbox-material",
-    name = "gruvbox-material",
-		priority = 1000,
-		config = function()
-			-- require("gruvbox-material").setup({
-			-- 	integrations = {
-			-- 		blink_cmp = true,
-			-- 		telescope = true,
-			-- 	},
-			-- })
-
-			vim.cmd.colorscheme("gruvbox-material")
-		end,
 	},
 	{
 		"sainnhe/sonokai",
@@ -58,11 +38,13 @@ return {
 		"sainnhe/edge",
 	},
 	{
-
 		"alexvzyl/nordic.nvim",
 	},
 	{
 		"tiagovla/tokyodark.nvim",
+	},
+	{
+		"folke/tokyonight.nvim",
 	},
 	{
 		"ribru17/bamboo.nvim",
@@ -71,15 +53,8 @@ return {
 		"mofiqul/dracula.nvim",
 	},
 	{
-		"savq/melange-nvim",
-	},
-	{
-		"Yazeed1s/oh-lucy.nvim",
-	},
-	{
 		"NTBBloodbath/sweetie.nvim",
 	},
-	{ "ntk148v/habamax.nvim", dependencies = { "rktjmp/lush.nvim" } },
 	{
 		"ellisonleao/gruvbox.nvim",
 	},
