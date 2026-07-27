@@ -11,72 +11,9 @@
 
 set $mod Mod4
 
-exec --no-startup-id xsettingsd
-exec --no-startup-id dunst
-# focus_on_window_activation none
-
-# Remove title bars for all windows
-for_window [class="^.*"] border pixel 2
-hide_edge_borders smart
-
-
-gaps inner 6
-gaps outer 4
-
-bindsym Print exec --no-startup-id maim ~/Pictures/screenshots/$(date +%F_%T).png | xclip -selection clipboard -t image/png
-bindsym Shift+Print exec --no-startup-id maim -s ~/Pictures/screenshots/$(date +%F_%T).png | xclip -selection clipboard -t image/png
-
-bindsym $mod+Shift+F9 exec kitty -e ~/.local/bin/toggle-keyboard-layout
-
-# Hide title bars in tabbed/stacked by using a 0-size font
-font pango:MesloLGM Nerd Font Mono 0
-
-
-bindsym $mod+space exec rofi -show window
-
-exec_always --no-startup-id xinput set-prop "Synaptics TM3075-002" "libinput Natural Scrolling Enabled" 1
-exec_always --no-startup-id xinput set-prop "Synaptics TM3075-002" "libinput Tapping Enabled" 1
-exec_always --no-startup-id xinput set-prop "Synaptics TM3075-002" "libinput Disable While Typing Enabled" 1
-
-bindsym $mod+Shift+t exec --no-startup-id ~/.local/bin/toggle-touchpad
-
-# Background battery threshold notification watcher
-exec_always --no-startup-id ~/.local/bin/battery-canary
-
-# Sleep / Suspend
-bindsym $mod+Shift+s exec --no-startup-id ~/.config/rofi/powermenu.sh
-exec_always --no-startup-id xss-lock -- i3lock -c 000000 &
-
-# exec --no-startup-id greenclip daemon
-# bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard
-
-exec --no-startup-id copyq
-bindsym $mod+c exec copyq toggle
-
-# Make Thunar float and set a specific size
-for_window [class="Thunar"] floating enable, resize set 900 600, move position center
-
-# Optional: Shortcut to open Thunar quickly (Mod+Shift+F)
-bindsym $mod+Shift+f exec thunar
-
-
-# Screenshots
-# bindsym Print exec --no-startup-id flameshot gui
-# bindsym Shift+Print exec --no-startup-id flameshot full -c
-
-
-exec_always --no-startup-id killall polybar
-exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
-
-# Toggle Polybar visibility
-bindsym $mod+p exec --no-startup-id polybar-msg cmd toggle
-
-#exec_always feh --bg-scale ~/.config/backgrounds/nice-blue-background.png
-bindsym $mod+d exec rofi -show combi
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-# font pango:MesloLGM Nerd Font Mono 12
+font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -93,40 +30,16 @@ exec --no-startup-id dex --autostart --environment i3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
-bindsym $mod+Shift+w exec kitty -e nmtui
-
-
-exec --no-startup-id blueman-applet
-bindsym $mod+Shift+b exec kitty -e bluetoothctl
 
 # Use pactl to adjust volume in PulseAudio.
-# set $refresh_i3status killall -SIGUSR1 i3status
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-# Use pamixer to limit volume to 100%
 set $refresh_i3status killall -SIGUSR1 i3status
-
-# Raise Volume (pamixer -i 5 automatically caps at 100%)
-bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 5 && $refresh_i3status
-
-# Lower Volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 5 && $refresh_i3status
-
-# Mute
-bindsym XF86AudioMute exec --no-startup-id pamixer -t && $refresh_i3status
-
-# Mic Mute (You can keep using pactl for this, or use pamixer --default-source -t)
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -139,10 +52,10 @@ tiling_drag modifier titlebar
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+q kill
+bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-# bindsym $mod+d exec --no-startup-id dmenu_run -fn 'Nerd Font Mono:pixelsize=16'
+bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -150,10 +63,10 @@ bindsym $mod+q kill
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -162,10 +75,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -174,7 +87,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+n split h
+bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -188,16 +101,16 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+m floating toggle
+bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-# bindsym $mod+m focus mode_toggle
+bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
 
 # focus the child container
-bindsym $mod+b focus child
+#bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -211,16 +124,6 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-
-# bindsym $mod+Tab focus next
-# bindsym $mod+Shift+Tab focus prev
-
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
-
-# Browser-style back-and-forth workspace toggling
-# bindsym $mod+Tab workspace back_and_forth
-
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -246,11 +149,6 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# workspace number 9 output HDMI-1
-# workspace number 10 output HDMI-2
-# workspace number $ws9 output HDMI-1
-# workspace number $ws10 output HDMI-2
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -266,11 +164,15 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
 
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape or $mod+r
@@ -283,20 +185,6 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# bar {
-       # status_command i3status
-# }
-
-
-
-# class                 border   backgr.  text     indicator child_border
-client.focused          #a3a3ab  #1e1e2e  #cdd6f4  #cdd6f4   #464757
-client.focused_inactive #1e1e2e  #1e1e2e  #6c7086  #1e1e2e   #1e1e2e
-client.unfocused        #1e1e2e  #1e1e2e  #6c7086  #1e1e2e   #1e1e2e
-client.urgent           #f38ba8  #1e1e2e  #ffffff  #f38ba8   #f38ba8
-client.placeholder      #000000  #1e1e2e  #ffffff  #000000   #000000
-
-client.background       #1e1e2e
-
-
-
+bar {
+        status_command i3status
+}
