@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+selection=$(
+    copyq read 0- \
+    | nl -w2 -s'  ' \
+    | rofi -dmenu \
+        -i \
+        -p "Clipboard"
+)
+
+[ -z "$selection" ] && exit
+
+index=$(printf "%s" "$selection" | awk '{print $1}')
+
+copyq select "$((index - 1))"

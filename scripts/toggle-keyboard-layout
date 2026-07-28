@@ -58,10 +58,11 @@ echo "Current layout : $current"
 echo "Switching to   : $next"
 echo
 
-sudo -p "Password: " -v
+# Pre-resolve target path in non-root environment
+target_file="$DOTFILES/$next.conf"
 
-sudo ln -sfn "$DOTFILES/$next.conf" "$LINK"
-sudo keyd.rvaiya reload
+# Link config AND restart keyd service under a single pkexec call
+pkexec sh -c "ln -sfn '$target_file' '$LINK' && systemctl restart keyd"
 
 notify-send \
     "Keyboard Layout" \
