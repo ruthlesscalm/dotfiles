@@ -69,6 +69,9 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
+# Make Thunar float and set a specific size
+for_window [class="Thunar"] floating enable, resize set 900 600, move position center
+
 # start a terminal
 bindsym $mod+Return exec kitty
 
@@ -78,7 +81,7 @@ bindsym $mod+q kill
 # Configure rofi for everything
 
 #Application switcher
-bindsym $mod+n exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id rofi -show drun
 
 # Window switcher
 bindsym $mod+space exec --no-startup-id rofi -show window -show-icons
@@ -136,10 +139,20 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-# bindsym $mod+Shift+space floating toggle
+bindsym $mod+m floating toggle
 
 # change focus between tiling / floating windows
-# bindsym $mod+space focus mode_toggle
+bindsym $mod+semicolon focus mode_toggle
+
+# ==========================================
+# Scratchpad Keybindings
+# ==========================================
+
+# Send current focused window to scratchpad
+bindsym $mod+o move scratchpad
+
+# Retrieve / cycle through scratchpad windows
+bindsym $mod+i scratchpad show
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -154,11 +167,14 @@ set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
 set $ws5 "5"
-set $ws6 "6"
+set $ws6 "6: "
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+assign [class="zen"] $ws6
+assign [class="qutebrowser"] $ws6
 
 # workspace switch between current and previous one
 bindsym $mod+Tab workspace back_and_forth
@@ -234,7 +250,7 @@ set $bg-color 	         #2f343f
 set $inactive-bg-color   #2f343f
 set $inactive-border-color #393e49
 set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
+set $inactive-text-color #b0b4bc
 set $urgent-bg-color     #E53935
 set $border-color        #595d65
 set $focus-color         #6d7179
@@ -242,7 +258,7 @@ set $focus-color         #6d7179
 # window colors
 #                       border              background         text                 indicator
 client.focused          $border-color        $bg-color          $text-color          $focus-color
-client.unfocused        $inactive-border-color $inactive-bg-color $inactive-text-color #00ff00
+client.unfocused        $inactive-border-color $inactive-bg-color $inactive-text-color $focus-color
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #ff0000
 
@@ -255,4 +271,5 @@ default_border pixel 1
 # give some padding to titles from left
 for_window [class=".*"] title_format "  %title"
 
-assign [class="zen"] $ws10
+exec redshift -O 5500
+
