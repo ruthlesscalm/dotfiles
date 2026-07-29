@@ -1,15 +1,67 @@
 #!/usr/bin/env bash
 
-selection=$(
-    copyq read 0- \
-    | nl -w2 -s'  ' \
-    | rofi -dmenu \
-        -i \
-        -p "Clipboard"
-)
+get_clipboard() {
+    copyq eval -- '
+        for (var i = 0; i < size(); ++i) {
+            var formats = getItem(i);
+            
+            // Check if item contains an image
+            var isImage = false;
+            for (var f in formats) {
+                if (f.indexOf("image/") === 0) {
+                    isImage = true;
+                    break;
+                }
+            }
 
-[ -z "$selection" ] && exit
+            if (isImage) {
+                // Rofi system icon + simple Image label
+                print((i + 1) + "  Image\0icon\x1fimage-x-generic\n");
+            } else {
+                var text = str(read(i));
+                text = text.replace(/\n/g, " ");
+                if (text.trim() === "") {
+                    text = "[Empty / Binary Data]";
+                }
+                print((i + 1) + "  " + text + "\n");
+            }
+        }
+    '
+}
 
-index=$(printf "%s" "$selection" | awk '{print $1}')
+while true; do
+    selection=$(
+        get_clipboard | rofi -dmenu \
+            -i \
+            -p "Clipboard" \
+            -show-icons \
+            -kb-custom-1 "Alt+Delete" \
+            -mesg "<b>Enter</b>: Copy | <b>Alt+Del</b>: Delete Item"
+    )
 
-copyq select "$((index - 1))"
+    exit_code=$?
+
+    [ -z "$selection" ] || [ $exit_code -eq 1 ] && exit 0
+
+    index=$(printf "%s" "$selection" | awk '{print $1}')
+    copyq_index=$((index - 1))
+
+    case $exit_code in
+        0) 
+            copyq select "$copyq_index"
+            
+            if command -v xclip &>/dev/null; then
+                is_img=$(copyq eval -- "var formats = getItem($copyq_index); for (var f in formats) { if (f.indexOf('image/') === 0) print('true'); }")
+                if [ "$is_img" = "true" ]; then
+                    copyq encoded "image/png" "$copyq_index" | xclip -selection clipboard -t image/png
+                fi
+            fi
+            
+            notify-send "Clipboard" "Selected item #$index"
+            exit 0
+            ;;
+        10) 
+            copyq remove "$copyq_index"
+            ;;
+    esac
+done

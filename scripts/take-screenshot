@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+LAST_DIR_FILE="$HOME/.cache/maim_last_dir"
+DEFAULT_DIR="$HOME/Pictures"
+
+if [ -f "$LAST_DIR_FILE" ]; then
+    SAVE_DIR=$(cat "$LAST_DIR_FILE")
+else
+    SAVE_DIR="$DEFAULT_DIR"
+fi
+
+mkdir -p "$SAVE_DIR"
+
+TMP_IMG="/tmp/maim_screenshot_$(date +%s).png"
+
+MODE="${1:-crop}"
+
+if [ "$MODE" = "crop" ]; then
+    maim -u -s "$TMP_IMG" || { rm -f "$TMP_IMG"; exit 0; }
+else
+    maim -u "$TMP_IMG" || { rm -f "$TMP_IMG"; exit 0; }
+fi
+
+if [ ! -s "$TMP_IMG" ]; then
+    rm -f "$TMP_IMG"
+    exit 0
+fi
+
+xclip -selection clipboard -t image/png < "$TMP_IMG"
+notify-send "Screenshot" "Copied to clipboard!" -i "$TMP_IMG"
+
+DEFAULT_FILENAME="screenshot_$(date +'%Y-%m-%d_%H-%M-%S').png"
+
+FILE_PATH=$(zenity --file-selection \
+    --save \
+    --confirm-overwrite \
+    --title="Save Screenshot As" \
+    --filename="$SAVE_DIR/$DEFAULT_FILENAME" \
+    --file-filter="PNG Images (*.png) | *.png")
+
+if [ -n "$FILE_PATH" ]; then
+    [[ "$FILE_PATH" != *.png ]] && FILE_PATH="${FILE_PATH}.png"
+    
+    mv "$TMP_IMG" "$FILE_PATH"
+    
+    dirname "$FILE_PATH" > "$LAST_DIR_FILE"
+    
+    notify-send "Screenshot Saved" "Saved to: $FILE_PATH"
+else
+    rm -f "$TMP_IMG"
+fi

@@ -95,7 +95,16 @@ bindsym $mod+u exec --no-startup-id ~/.config/rofi/scripts/powermenu
 
 #clipboard
 exec --no-startup-id copyq
-bindsym $mod+c exec --no-startup-id ~/.config/rofi/scripts/clipboard
+bindsym $mod+v exec --no-startup-id ~/.config/rofi/scripts/clipboard
+bindsym $mod+Shift+v exec copyq toggle
+
+# Screen shot
+# Mod + Print -> Crop region (Select area -> Copy to clipboard -> GTK file picker)
+bindsym $mod+Print exec --no-startup-id ~/.config/scripts/take-screenshot crop
+
+# Print -> Fullscreen (Copy to clipboard -> GTK file picker)
+bindsym Print exec --no-startup-id ~/.config/scripts/take-screenshot full
+
 
 # Change Keyboard layout
 bindsym $mod+t exec --no-startup-id ~/.config/rofi/scripts/keyboard-layout

@@ -11,8 +11,6 @@ layout=$(
          -p "Keyboard Layout"
 )
 
-# Exit if no selection was made (e.g., user pressed Escape)
 [[ -z "$layout" ]] && exit 0
 
-# Run the script directly — the script itself will handle pkexec inside
 "$SCRIPT" "$layout"
