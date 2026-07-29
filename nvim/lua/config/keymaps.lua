@@ -7,7 +7,7 @@ vim.keymap.set("n", "<M-q>", "<cmd>q<CR>", {desc = "Quit Nvim"})
 
 vim.keymap.set({"n", "x"}, "<leader>c", '"+', {desc = "System clipboard register (+)"})
 
-vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", {desc = "Delete Current buffer"})
+vim.keymap.set("n", "<M-b>", "<cmd>bdelete<CR>", {desc = "Delete Current buffer"})
 vim.keymap.set( "n", "<M-Tab>", "<cmd>bnext<CR>", { desc = "Next Buffer" })
 vim.keymap.set( "n", "<M-S-Tab>", "<cmd>bprev<CR>", { desc = "Previous Buffer" })
 
