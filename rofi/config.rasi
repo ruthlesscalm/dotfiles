@@ -1,82 +1,105 @@
 configuration {
-    modi: [drun, run, window];
+    modi: [drun, run, window, filebrowser];
     show-icons: false;
-    font: "MesloLGM Nerd Font Mono 13";
-    combi-modes: [window, drun, run];
+    font: "MesloLGS Nerd Font Mono 13";
+
+    case-sensitive: false;
+    matching: "fuzzy";
+    sort: true;
+    sorting-method: "fzf";
 }
 
 * {
-    bg: #1e1e2e;
-    bg-alt: #181825;
-    bg-hover: #313244;
-    fg: #cdd6f4;
-    accent: #cba6f7;
-    border: #313244;
-    scrollColor: #464757;
+    bg:           #2f343f;
+    bg-alt:       #252830;
+    bg-hover:     #393e49;
+    fg:           #cfcfd0;
+    active:       #6b7a68;
+    fg-dim:       #676E7D;
+    accent:       #6d7179;
+    border:       #595d65;
+    urgent:       #E53935;
+    prompt:       #fab387;
 
     background-color: transparent;
-    text-color: @fg;
+    text-color:       @fg;
 }
 
+/* Window Frame */
 window {
-    location: center;
-    anchor: center;
-    width: 45%;
-    border: 2px;
-    border-color: @border;
-    border-radius: 12px;
+    location:         center;
+    anchor:           center;
+    width:            45%;
+    border:           2px;
+    border-color:     @border;
+    border-radius:    8px;
     background-color: @bg;
 }
 
+/* Main Box (Search at Bottom Layout) */
 mainbox {
+    children:         [ listview, inputbar ];
     background-color: @bg;
-    padding: 12px;
+    padding:          12px;
+    spacing:          10px;
 }
 
+/* Search Bar (Anchored at Bottom) */
 inputbar {
-    children: [prompt, entry];
-    padding: 10px;
+    children:         [ prompt, entry ];
+    padding:          8px 12px;
     background-color: @bg-alt;
-    border-radius: 10px;
+    border:           1px;
+    border-color:     @border;
+    border-radius:    6px;
 }
 
 prompt {
-    text-color: @accent;
-    padding: 0 10px 0 0;
+    text-color:       @prompt;
+    padding:          0px 10px 0px 0px;
 }
 
 entry {
-    placeholder: "type to summon…";
-    background-color: transparent;
-    text-color: @fg;
+    placeholder:      "Find files, apps, or windows…";
+    placeholder-color:@fg-dim;
+    text-color:       @fg;
 }
 
+/* Results List */
 listview {
-    lines: 6;
-    spacing: 6px;
-    padding: 10px 0 0 0;
-    background-color: transparent;
+    lines:            8;
+    spacing:          4px;
+    background-color: @bg-alt;
+    border:           1px;
+    border-color:     @border;
+    border-radius:    6px;
+    padding:          8px;
+    scrollbar:        false;
 }
 
-/* normal items */
+/* Item Selection Styling */
 element {
-    padding: 8px;
-    border-radius: 8px;
-    background-color: transparent;
-    text-color: @fg;
+    padding:          6px 8px;
+    border-radius:    4px;
+    text-color:       @fg;
 }
 
-/* hovered / selected */
-element selected,
-element selected.normal,
-element selected.active {
+element selected {
     background-color: @bg-hover;
-    text-color: @accent;
+    text-color:       @fg;
+    border:           1px;
+    border-color:     @accent;
+}
+element selected.active {
+    background-color: @active;
 }
 
+element-text {
+    background-color: transparent;
+    text-color:       inherit;
+}
 
-
-/* kill alternate row styling */
+/* Strip Alternate Row Highlights */
 element normal.normal,
 element alternate.normal,
 element normal.active,
@@ -84,19 +107,5 @@ element alternate.active,
 element normal.urgent,
 element alternate.urgent {
     background-color: transparent;
-    text-color: @fg;
+    text-color:       @fg;
 }
-
-element-text {
-    background-color: transparent;
-    text-color: inherit;
-}
-
-/* === SCROLLBAR === */
-scrollbar {
-    background-color: transparent;
-    handle-color: @scrollColor;
-    width: 6px;
-    margin: 0 4px 0 0;
-}
-

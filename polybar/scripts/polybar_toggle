@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if pgrep -x polybar >/dev/null; then
+    polybar-msg cmd toggle
+else
+    ~/.config/polybar/scripts/launch_polybar
+fi

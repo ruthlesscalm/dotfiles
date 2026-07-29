@@ -12,7 +12,7 @@
     # Shrink window if content is smaller
     shrink = yes
     
-    # Transparency (0-100) - Slight transparency for that modern Linux feel
+    # Transparency (0-100) 
     transparency = 5
     
     # Padding and Spacing
@@ -29,7 +29,6 @@
     separator_color = frame
     
     # --- TEXT ---
-    # Increased font size to 12 (was 10)
     font = MesloLGS Nerd Font Mono 14
     
     line_height = 4
@@ -48,7 +47,6 @@
     # --- ICONS ---
     enable_recursive_icon_lookup = true
     
-    # Make sure you ran the sudo apt install command above!
     icon_theme = Papirus-Dark
     
     icon_position = left
