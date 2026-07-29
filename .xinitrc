@@ -1,8 +1,64 @@
-# 1. Export variables for D-Bus and systemd
-# This ensures things like Thunar, Obsidian, and Dunst can talk to each other
+#!/bin/sh
+
+prefix="/usr"
+exec_prefix="${prefix}"
+xrdb="xrdb"
+xinitdir="/etc/X11/xinit"
+xclock="xclock"
+xterm="xterm"
+twm="twm"
+xmodmap="xmodmap"
+
+userresources="$HOME/.Xresources"
+usermodmap="$HOME/.Xmodmap"
+sysresources="$xinitdir/.Xresources"
+sysmodmap="$xinitdir/.Xmodmap"
+
+# merge in defaults and keymaps
+
+if [ -f "$sysresources" ]; then
+    if [ -x /usr/bin/cpp ] ; then
+        "$xrdb" -merge "$sysresources"
+    else
+        "$xrdb" -nocpp -merge "$sysresources"
+    fi
+fi
+
+if [ -f "$sysmodmap" ]; then
+    "$xmodmap" "$sysmodmap"
+fi
+
+if [ -f "$userresources" ]; then
+    if [ -x /usr/bin/cpp ] ; then
+        "$xrdb" -merge "$userresources"
+    else
+        "$xrdb" -nocpp -merge "$userresources"
+    fi
+fi
+
+if [ -f "$usermodmap" ]; then
+    "$xmodmap" "$usermodmap"
+fi
+
+# start some nice programs
+
+if [ -d "$xinitdir"/xinitrc.d ] ; then
+	for f in "$xinitdir/xinitrc.d"/?*.sh ; do
+		[ -x "$f" ] && . "$f"
+	done
+	unset f
+fi
+
+#"$twm" &
+#"$xclock" -geometry 50x50-1+1 &
+#"$xterm" -geometry 80x50+494+51 &
+#"$xterm" -geometry 80x20+494-0 &
+#exec "$xterm" -geometry 80x66+0+0 -name login
+
+export XDG_CURRENT_DESKTOP=i3
+export XDG_SESSION_TYPE=x11
 export DISPLAY=:0
+
 systemctl --user import-environment DISPLAY XAUTHORITY
 
-# 2. Launch i3 with a single D-Bus session
-# dbus-run-session is the modern, cleaner way to do this
 exec dbus-run-session i3
