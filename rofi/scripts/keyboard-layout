@@ -5,7 +5,7 @@ set -euo pipefail
 SCRIPT="$HOME/.config/scripts/toggle-keyboard-layout"
 
 layout=$(
-    printf "qwerty\npine\ngallium\n" |
+    printf "qwerty\ndvorak\npine\ngallium\n" |
     rofi -dmenu \
          -i \
          -p "Keyboard Layout"

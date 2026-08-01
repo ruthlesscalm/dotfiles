@@ -7,6 +7,7 @@ LINK="/etc/keyd/default.conf"
 
 layouts=(
     qwerty
+    dvorak
     gallium
     pine
 )

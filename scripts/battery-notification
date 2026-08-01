@@ -1,45 +1,54 @@
 #!/usr/bin/env bash
 
+# Ensure environment variables are set for dunstify
+export DISPLAY="${DISPLAY:-:0}"
+export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=/run/user/$(id -u)/bus}"
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.local/bin"
 
-CURRENT_PID=$$
-for pid in $(pgrep -f "battery-canary"); do
-    if [ "$pid" != "$CURRENT_PID" ]; then
-        kill "$pid" 2>/dev/null
+# Prevent multiple instances using pidof/flock-style check
+SCRIPT_NAME=$(basename "$0")
+for pid in $(pgrep -f "$SCRIPT_NAME"); do
+    if [ "$pid" -ne "$$" ] && [ "$pid" -ne "$PPID" ]; then
+        kill -9 "$pid" 2>/dev/null
     fi
 done
 
-STATE_FILE_20="/tmp/.bat1_warn_20"
-STATE_FILE_10="/tmp/.bat1_warn_10"
+STATE_20="/tmp/.bat1_warn_20"
+STATE_10="/tmp/.bat1_warn_10"
 
 while true; do
-    BAT_INFO=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1)
-    
-    PERCENTAGE=$(echo "$BAT_INFO" | awk '/percentage:/ {print $2}' | tr -d '%')
-    IS_CHARGING=$(echo "$BAT_INFO" | grep -q "state:\s*charging" && echo "yes" || echo "no")
+    # Fetch battery info once
+    BAT_INFO=$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 2>/dev/null)
 
-    if [[ -z "$PERCENTAGE" ]]; then
+    if [[ -z "$BAT_INFO" ]]; then
         sleep 60
         continue
     fi
 
-    if [ "$IS_CHARGING" = "no" ]; then
+    PERCENTAGE=$(echo "$BAT_INFO" | awk '/percentage:/ {print $2}' | tr -d '%')
+    STATE=$(echo "$BAT_INFO" | awk '/state:/ {print $2}')
+
+    # Default to 100 if parsing fails to avoid false triggers
+    PERCENTAGE=${PERCENTAGE:-100}
+
+    if [ "$STATE" != "charging" ] && [ "$STATE" != "fully-charged" ]; then
         if [ "$PERCENTAGE" -le 10 ]; then
-            if [ ! -f "$STATE_FILE_10" ]; then
-                dunstify -u critical -i battery-empty "Battery Dangerously Low" "BAT1 is at <b>${PERCENTAGE}%</b>.\nPlug in your charger immediately!"
-                touch "$STATE_FILE_10"
+            if [ ! -f "$STATE_10" ]; then
+                dunstify -u critical -i battery-empty "Battery Dangerously Low" "BAT1 is down to <b>${PERCENTAGE}%</b>!\nPlug in immediately."
+                touch "$STATE_10"
             fi
         elif [ "$PERCENTAGE" -le 20 ]; then
-            if [ ! -f "$STATE_FILE_20" ]; then
+            if [ ! -f "$STATE_20" ]; then
                 dunstify -u normal -i battery-caution "Battery Low" "BAT1 is down to <b>${PERCENTAGE}%</b>."
-                touch "$STATE_FILE_20"
+                touch "$STATE_20"
             fi
         else
-            rm -f "$STATE_FILE_20" "$STATE_FILE_10"
+            rm -f "$STATE_20" "$STATE_10"
         fi
     else
-        rm -f "$STATE_FILE_20" "$STATE_FILE_10"
+        # Clears state files when charging
+        rm -f "$STATE_20" "$STATE_10"
     fi
 
-    sleep 60
+    sleep 30
 done

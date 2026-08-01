@@ -22,6 +22,8 @@ settings:
   content.notifications.enabled:
     https://www.youtube.com: true
   fonts.default_size:
-    global: 14pt
+    global: 13pt
+  tabs.show:
+    global: never
   zoom.default:
     global: 130%

@@ -157,3 +157,10 @@ export PATH="/home/pavan/.local/bin:$PATH"
 function precmd() {
   echo -ne '\e[6 q'
 }
+
+# Bind Home and End keys for standard terminals
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+bindkey "^[OH" beginning-of-line
+bindkey "^[OF" end-of-line
+bindkey "^[[3~" delete-char

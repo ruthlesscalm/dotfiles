@@ -6,7 +6,7 @@ let &t_EI = "\e[2 q"
 
 syntax on
 
-set expandtab shiftwidth=2 tabstop=2
+set expandtab shiftwidth=4 tabstop=4
 set incsearch hlsearch ignorecase smartcase
 
 set path+=**
