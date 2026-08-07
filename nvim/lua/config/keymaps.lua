@@ -21,4 +21,6 @@ vim.keymap.set("n", "<M-v>", "<cmd>vsplit<CR>", {desc = "Split Vertically"})
 
 vim.keymap.set('t', '<M-Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
 
-vim.keymap.set('n', '<leader>tm', "<cmd>term<CR>" , { desc = 'Open Terminal' }
+vim.keymap.set('n', '<leader>tm', "<cmd>term<CR>" , { desc = 'Open Terminal' })
+
+vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", {desc = "Open new tab"})

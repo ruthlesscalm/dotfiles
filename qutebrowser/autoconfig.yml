@@ -6,6 +6,13 @@
 
 config_version: 2
 settings:
+  auto_save.session:
+    global: true
+  bindings.commands:
+    global:
+      normal:
+        <Ctrl+i>: forward
+        <Ctrl+o>: back
   colors.webpage.bg:
     global: '#23272e'
   colors.webpage.darkmode.algorithm:
@@ -17,6 +24,7 @@ settings:
   colors.webpage.preferred_color_scheme:
     global: dark
   content.javascript.clipboard:
+    https://chatgpt.com: access-paste
     https://gemini.google.com: access-paste
     https://github.com: access-paste
   content.notifications.enabled:
