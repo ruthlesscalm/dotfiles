@@ -19,6 +19,7 @@ vim.opt.undofile = true
 
 vim.opt.signcolumn = "auto:1"
 vim.opt.wrap = false
+vim.opt.linebreak = true
 
 -- netrw
 vim.g.netrw_bufsettings = "noma nomod nu rnu nobl nowrap ro" -- nomodifiable nomidified line_number relative_number nobuflisted nowrap ro
