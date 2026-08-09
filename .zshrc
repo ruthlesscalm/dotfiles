@@ -146,7 +146,8 @@ y() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 
-export PATH=$PATH:$HOME/go/bin
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
 export PATH="/home/pavan/.local/bin:$PATH"
 
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
