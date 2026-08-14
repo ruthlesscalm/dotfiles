@@ -11,6 +11,7 @@ return {
             "typescript",
             "tsx",
             "jsx",
+            "java"
         })
     end,
 }
