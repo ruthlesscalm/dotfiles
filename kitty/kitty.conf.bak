@@ -1,5 +1,5 @@
 # BEGIN_KITTY_THEME
-# OneDark-Pro
+# Ayu Mirage
 include current-theme.conf
 # END_KITTY_THEME
 
@@ -9,8 +9,6 @@ font_size 16.0
 
 # BEGIN_KITTY_FONTS
 font_family      family='MesloLGM Nerd Font Mono' postscript_name=MesloLGMNFM-Regular
-# fallback for emojis
-symbol_map U+1F300-U+1FAFF Noto Color Emoji
 bold_font        auto
 italic_font      auto
 bold_italic_font auto
