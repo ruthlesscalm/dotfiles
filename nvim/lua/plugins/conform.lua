@@ -6,7 +6,7 @@ return {
 			lua = { "stylua" },
 			javascript = { "prettier" },
 			go = { "goimports" },
-            java = {"google-java-format"}
+			java = { "google-java-format" },
 		},
 	},
 	keys = {
