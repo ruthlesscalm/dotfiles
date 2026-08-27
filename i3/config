@@ -23,6 +23,10 @@ exec --no-startup-id dunst
 
 exec_always --no-startup-id ~/.config/scripts/battery-notification
 
+
+# Gnome Keyring
+exec --no-startup-id gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 # exec --no-startup-id dex --autostart --environment i3
