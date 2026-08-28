@@ -1,0 +1,74 @@
+(defcfg
+  windows-altgr add-lctl-release
+)
+
+(defsrc
+  grv  1 2 3 4 5 6 7 8 9 0 - = bspc
+  tab  q w e r t y u i o p [ ] \
+  caps a s d f g h j k l ; ' ret
+  lsft z x c v b n m , . / rsft
+  lctl lmet lalt spc ralt rmet rctl
+)
+
+;; Shift virtual key.
+;; This lets B toggle Shift on/off, like keyd's toggle(shift).
+(defvirtualkeys
+  shift-toggle lsft
+)
+
+(defalias
+  ;; Caps Lock = hold numbers layer
+  num (layer-while-held numbers)
+
+  ;; X = one-shot Left Control
+  xctl (one-shot 1000 lctl)
+
+  ;; B = toggle Shift
+  bshift (on-press toggle-virtualkey shift-toggle)
+
+  ;; Escape = Escape + release any toggled Shift
+  clearesc (multi esc (release-key lsft))
+)
+
+;; Normal layer
+(deflayermap (main)
+  caps @num
+  ralt lctl
+  esc @clearesc
+)
+
+;; Numbers/navigation layer
+(deflayermap (numbers)
+  w 1
+  e 2
+  r 3
+  t 4
+
+  s 5
+  d 6
+  f 7
+  g 8
+
+  c 9
+  v 0
+
+  n -
+  m =
+  p \
+  [ grv
+
+  b @bshift
+  x @xctl
+
+  i bspc
+  o del
+  spc esc
+
+  h left
+  j down
+  k up
+  l rght
+
+  y home
+  u end
+)
