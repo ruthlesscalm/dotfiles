@@ -61,4 +61,9 @@ export DISPLAY=:0
 
 systemctl --user import-environment DISPLAY XAUTHORITY
 
-exec dbus-run-session i3
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+
+dbus-update-activation-environment --all
+
+exec i3
