@@ -7,6 +7,7 @@ return {
 			javascript = { "prettier" },
 			go = { "goimports" },
 			java = { "google-java-format" },
+			c = { "clang-format" },
 		},
 	},
 	keys = {
