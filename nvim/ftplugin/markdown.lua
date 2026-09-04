@@ -3,6 +3,8 @@ vim.opt_local.concealcursor = "nc"
 
 local function toggle_conceal()
 	if vim.opt_local.conceallevel:get() == 1 then
+		vim.opt_local.conceallevel = 2
+	elseif vim.opt_local.conceallevel:get() == 2 then
 		vim.opt_local.conceallevel = 0
 	elseif vim.opt_local.conceallevel:get() == 0 then
 		vim.opt_local.conceallevel = 1
