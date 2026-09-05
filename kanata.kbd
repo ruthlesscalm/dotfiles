@@ -10,8 +10,7 @@
   lctl lmet lalt spc ralt rmet rctl
 )
 
-;; Shift virtual key.
-;; This lets B toggle Shift on/off, like keyd's toggle(shift).
+;; Virtual Shift key used for persistent Shift toggle.
 (defvirtualkeys
   shift-toggle lsft
 )
@@ -23,10 +22,14 @@
   ;; X = one-shot Left Control
   xctl (one-shot 1000 lctl)
 
-  ;; B = toggle Shift
+  ;; B = persistent Shift toggle
   bshift (on-press toggle-virtualkey shift-toggle)
 
-  ;; Escape = Escape + release any toggled Shift
+  ;; ; on numbers layer = one-shot Shift
+  ;; The ; itself is NOT typed.
+  oshift (one-shot 1000 lsft)
+
+  ;; Escape = Escape + force Shift OFF
   clearesc (multi esc (release-key lsft))
 )
 
@@ -57,7 +60,11 @@
   p \
   [ grv
 
+  ;; Shift controls
   b @bshift
+  ; @oshift
+
+  ;; One-shot Control
   x @xctl
 
   i bspc
