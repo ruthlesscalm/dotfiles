@@ -84,8 +84,8 @@ bindsym $mod+q kill
 
 # Configure rofi for everything
 
-#Application switcher
-bindsym $mod+d exec --no-startup-id rofi -show drun
+# Application switcher
+bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
 
 # Window switcher
 bindsym $mod+space exec --no-startup-id rofi -show window -show-icons
