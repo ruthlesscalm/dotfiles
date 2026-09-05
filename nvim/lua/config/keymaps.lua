@@ -15,6 +15,6 @@ vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Un-indent selection" })
 
 vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, {desc = "Open signature_help"})
 
-vim.keymap.set('t', '<C-Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
+vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
 
 vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", {desc = "Open new tab"})
