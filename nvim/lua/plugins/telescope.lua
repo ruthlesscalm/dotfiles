@@ -61,10 +61,15 @@ return {
 			builtin.git_status,
 			desc = "Git Status",
 		},
-    {
+		{
 			"<leader>fr",
 			builtin.resume,
 			desc = "Resume last telescope",
+		},
+		{
+			"<leader>fa",
+			builtin.builtin,
+			desc = "Open Builtin",
 		},
 	},
 }
