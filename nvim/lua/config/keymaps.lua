@@ -18,3 +18,5 @@ vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, {desc = "Open signature
 vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
 
 vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", {desc = "Open new tab"})
+
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, {desc = "Open language definition"})
