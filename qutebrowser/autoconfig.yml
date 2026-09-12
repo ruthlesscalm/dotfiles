@@ -11,6 +11,7 @@ settings:
   bindings.commands:
     global:
       normal:
+        <Ctrl+Tab>: tab-next
         <Ctrl+i>: forward
         <Ctrl+o>: back
   colors.webpage.bg:
