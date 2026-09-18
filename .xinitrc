@@ -66,4 +66,6 @@ export SSH_AUTH_SOCK
 
 dbus-update-activation-environment --all
 
+export MOZ_USE_XINPUT2=1
+
 exec i3
