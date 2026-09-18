@@ -20,7 +20,6 @@ vim.keymap.set('t', '<Esc><Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' 
 vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", {desc = "Open new tab"})
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {desc = "Open language definition"})
-vim.keymap.set("n", "gu", vim.lsp.buf.type_definition, {desc = "Open language type definition"})
 
 vim.keymap.set("n", "<leader>ld", ":lcd %:p:h<CR>:pwd<CR>", {
     desc = "Set cwd to current directory",
