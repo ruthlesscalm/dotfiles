@@ -26,3 +26,8 @@ vim.g.netrw_bufsettings = "noma nomod nu rnu nobl nowrap ro" -- nomodifiable nom
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99 -- Start with folds open
