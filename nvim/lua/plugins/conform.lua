@@ -5,6 +5,7 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			javascript = { "prettier" },
+            typescript = {"prettier"},
 			go = { "goimports" },
 			java = { "google-java-format" },
 			c = { "clang-format" },
