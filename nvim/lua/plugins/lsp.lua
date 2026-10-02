@@ -7,6 +7,9 @@ return {
 		vim.lsp.enable("lua_ls")
 		vim.lsp.enable("jdtls")
 		vim.lsp.enable("vtsls")
+        vim.lsp.enable("html")
+        vim.lsp.enable("cssls")
+        vim.lsp.enable("tailwindcss")
 		vim.lsp.config("jsonls", {
 			settings = {
 				json = {
