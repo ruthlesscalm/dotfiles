@@ -6,6 +6,8 @@ return {
 			lua = { "stylua" },
 			javascript = { "prettier" },
             typescript = {"prettier"},
+            javascriptreact = {"prettier"},
+            typescriptreact = {"prettier"},
 			go = { "goimports" },
 			java = { "google-java-format" },
 			c = { "clang-format" },

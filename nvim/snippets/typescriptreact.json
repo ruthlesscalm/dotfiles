@@ -1,0 +1,73 @@
+{
+    "Full arrow function": {
+        "prefix": "arfn",
+        "body": [
+            "const ${1:fn} = (${2}) => {",
+            "  ${3}",
+            "}"
+        ],
+        "description": "Full arrow function"
+    },
+
+    "Half arrow function": {
+        "prefix": "harfn",
+        "body": [
+            "(${1}) => {",
+            "  ${2}",
+            "}"
+        ],
+        "description": "Arrow function without const/="
+    },
+
+    "Short arrow function": {
+        "prefix": "sarfn",
+        "body": [
+            "(${1}) => ${2}"
+        ],
+        "description": "Short one-line arrow function"
+    },
+
+    "console.log": {
+        "prefix": "colog",
+        "body": [
+            "console.log(${1})"
+        ],
+        "description": "console.log"
+    },
+
+    "Component self-closing": {
+        "prefix": "com",
+        "body": [
+            "<${1:Component}${2} />"
+        ],
+        "description": "<Component />"
+    },
+
+    "JSX tag": {
+        "prefix": "tag",
+        "body": [
+            "<${1:div}>${2}</${1}>"
+        ],
+        "description": "<tag></tag> with mirrored tag name"
+    },
+
+    "Component block": {
+        "prefix": "comb",
+        "body": [
+            "<${1:Component}>",
+            "  ${2}",
+            "</${1}>"
+        ],
+        "description": "<Component>...</Component>"
+    },
+
+    "React fragment": {
+        "prefix": "frag",
+        "body": [
+            "<>",
+            "  ${1}",
+            "</>"
+        ],
+        "description": "React fragment"
+    }
+}
