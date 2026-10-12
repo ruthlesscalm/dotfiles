@@ -148,7 +148,7 @@ export NVM_DIR="$HOME/.nvm"
 
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
-export PATH="/home/pavan/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
@@ -165,3 +165,5 @@ bindkey "^[[F" end-of-line
 bindkey "^[OH" beginning-of-line
 bindkey "^[OF" end-of-line
 bindkey "^[[3~" delete-char
+bindkey "^H" backward-kill-word
+bindkey "^[[3;5~" kill-word
