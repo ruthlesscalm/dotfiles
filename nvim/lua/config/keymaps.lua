@@ -3,8 +3,6 @@ vim.keymap.set("n", "<leader>e", "<cmd>Ex<CR>", {desc = "Open File Explorer"}) -
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", {desc = "Save current buffer"}) 
 vim.keymap.set("i", "<C-s>", "<esc><cmd>w<CR>", {desc = "Save current buffer"}) 
 
-vim.keymap.set("n", "<C-q>", "<cmd>q<CR>", {desc = "Quit Window"})
-
 vim.keymap.set({"n", "x"}, "<leader>c", '"+', {desc = "System clipboard register (+)"})
 
 vim.keymap.set("n", "<leader>bd", "<cmd>bp | bd #<CR>", {desc = "Delete Current buffer"})
