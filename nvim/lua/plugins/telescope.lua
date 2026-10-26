@@ -52,14 +52,19 @@ return {
 			desc = "Recent Files",
 		},
 		{
-			"<leader>fc",
+			"<leader>gc",
 			builtin.git_commits,
 			desc = "Git Commits",
 		},
 		{
-			"<leader>fs",
+			"<leader>gs",
 			builtin.git_status,
-			desc = "Git Status",
+			desc = "Git telescope Status",
+		},
+		{
+			"<leader>gf",
+			builtin.git_files,
+			desc = "Git Files",
 		},
 		{
 			"<leader>fr",

@@ -1,4 +1,5 @@
 return {
+
 	{
 		"edeneast/nightfox.nvim",
 		priority = 1000,
@@ -10,7 +11,7 @@ return {
 				},
 			})
 			vim.cmd.colorscheme("nightfox")
-		end,
+        end,
 	},
 	{
 		"catppuccin/nvim",
@@ -28,4 +29,24 @@ return {
 	{
 		"neanias/everforest-nvim",
 	},
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+		config = function()
+			-- vim.cmd.colorscheme("rose-pine")
+		end,
+		--
+         -- Sets a noticeable dark red background for the column
+         -- vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#4b252c" })
+    },
+    {
+        "tiagovla/tokyodark.nvim",
+        opts = {
+            -- custom options here
+        },
+        config = function(_, opts)
+            -- require("tokyodark").setup(opts) -- calling setup is optional
+            -- vim.cmd [[colorscheme tokyodark]]
+        end,
+    },
 }

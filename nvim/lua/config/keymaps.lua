@@ -4,6 +4,7 @@ vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", {desc = "Save current buffer"})
 vim.keymap.set("i", "<C-s>", "<esc><cmd>w<CR>", {desc = "Save current buffer"}) 
 
 vim.keymap.set({"n", "x"}, "<leader>c", '"+', {desc = "System clipboard register (+)"})
+vim.keymap.set({"n", "x"}, "<leader>_", '"_', {desc = "Blackhole register (_)"})
 
 vim.keymap.set("n", "<leader>bd", "<cmd>bp | bd #<CR>", {desc = "Delete Current buffer"})
 
@@ -12,8 +13,8 @@ vim.keymap.set( "n", "<C-Tab>", "<cmd>bnext<CR>", { desc = "Next Buffer" })
 
 vim.keymap.set("n", "<leader>bo", "<cmd>%bd|e#|bd#<cr>", { desc = "Close all buffers except current" })
 
-vim.keymap.set("v", "<Tab>", ">gv", { desc = "Indent selection" })
-vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Un-indent selection" })
+-- vim.keymap.set("v", "<Tab>", ">gv", { desc = "Indent selection" })
+-- vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Un-indent selection" })
 
 vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, {desc = "Open signature_help"})
 
@@ -26,3 +27,5 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition, {desc = "Open language definit
 vim.keymap.set("n", "<leader>ld", ":lcd %:p:h<CR>:pwd<CR>", {
     desc = "Set cwd to current directory",
 })
+
+vim.keymap.set({"x"}, "<leader>p", "\"_dP", {desc = "Paste without overwriting the default register"})
