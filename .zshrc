@@ -30,8 +30,8 @@ alias ls='ls --color=auto -F'
 alias ll='ls -lA'
 alias la='ls -A'
 
-alias trashp='trash-put'
-alias trashl='trash-list'
+alias tp='trash-put'
+alias tl='trash-list'
 
 ### ================================
 ### HISTORY 
