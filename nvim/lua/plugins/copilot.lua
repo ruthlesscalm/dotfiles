@@ -1,21 +1,33 @@
 return {
-  "zbirenbaum/copilot.lua",
-  cmd = "Copilot",
-  event = "InsertEnter",
-  config = function()
-    require("copilot").setup({
-      panel = { enabled = true },
-      suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        keymap = {
-          accept = "<M-l>", 
-          next = "<M-]>",
-          prev = "<M-[>",
-          dismiss = "<C-]>",
-        },
-      },
-      filetypes = { ["*"] = true },
-    })
-  end,
+	"zbirenbaum/copilot.lua",
+	cmd = "Copilot",
+	event = "InsertEnter",
+	config = function()
+		require("copilot").setup({
+			panel = { enabled = true },
+			suggestion = {
+				enabled = true,
+				auto_trigger = true,
+				keymap = {
+					accept = "<M-l>",
+					next = "<M-]>",
+					prev = "<M-[>",
+					dismiss = "<C-]>",
+				},
+			},
+			filetypes = { ["*"] = true },
+		})
+	end,
+	keys = {
+		{
+			"<leader>ai",
+			"<cmd>Copilot enable<CR><cmd>lua print('Copilot Enabled')<CR>",
+			desc = "Enable Copilot",
+		},
+		{
+			"<leader>ao",
+			"<cmd>Copilot disable<CR><cmd>lua print('Copilot Disabled')<CR>",
+			desc = "Disable Copilot",
+		},
+	},
 }

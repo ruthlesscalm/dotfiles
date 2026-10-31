@@ -14,6 +14,9 @@ return {
     },
     picker = {
         name = "telescope.nvim"
+    },
+    ui = {
+        enable = false,
     }
   },
 }
