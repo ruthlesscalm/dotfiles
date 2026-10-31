@@ -5,7 +5,6 @@ let &t_SR = "\e[4 q"
 let &t_EI = "\e[2 q" 
 
 syntax on
-
 set expandtab shiftwidth=4 tabstop=4
 set incsearch hlsearch ignorecase smartcase
 
@@ -26,9 +25,6 @@ nnoremap <leader>e :Ex<CR>
 nnoremap <C-s> :w<CR>
 inoremap <C-s> <Esc>:w<CR>
 
-" Quit
-nnoremap <C-q> :q<CR>
-
 " System clipboard register
 nnoremap <leader>c "+
 xnoremap <leader>c "+
@@ -45,7 +41,7 @@ vnoremap <S-Tab> <gv
 
 " Terminal mode
 if exists('##terminal')
-    tnoremap <C-Esc> <C-\><C-n>
+    tnoremap <Esc-Esc> <C-\><C-n>
 endif
 
 " New tab
