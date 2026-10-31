@@ -1,5 +1,5 @@
 # BEGIN_KITTY_THEME
-# Ayu Mirage
+# OneDark-Pro
 include current-theme.conf
 # END_KITTY_THEME
 
@@ -8,7 +8,19 @@ font_size 16.0
 
 
 # BEGIN_KITTY_FONTS
-font_family      family='MesloLGM Nerd Font Mono' postscript_name=MesloLGMNFM-Regular
+# font_family      family='MesloLGM Nerd Font Mono' postscript_name=MesloLGMNFM-Regular
+# font_family Cascadia Code NF
+# font_family SauceCodePro Nerd Font Mono
+# font_family Adwaita Mono
+# font_family Noto Sans Mono
+# font_family Maple Mono NF CN
+# font_family JetBrainsMono Nerd Font Mono
+font_family FiraCode Nerd Font Mono
+
+disable_ligatures never
+
+# fallback for emojis
+symbol_map U+1F300-U+1FAFF Noto Color Emoji
 bold_font        auto
 italic_font      auto
 bold_italic_font auto
@@ -24,3 +36,6 @@ cursor_shape beam
 # map alt+w close_tab
 # map f6 launch --location=vsplit
 # map f5 launch --location=hsplit
+
+map ctrl+shift+w no_op
+map ctrl+tab no_op
