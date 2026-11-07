@@ -67,7 +67,7 @@ return {
                 highlight = "RenderMarkdownUnchecked",
             },
             checked = {
-                icon = "󰱒 ",
+                icon = "󰄵 ",
                 highlight = "RenderMarkdownChecked",
             },
             custom = {
@@ -91,6 +91,11 @@ return {
                     raw = "[!]",
                     rendered = "󰀪 ",
                     highlight = "RenderMarkdownImportant",
+                },
+                doubt = {
+                    raw = "[?]",
+                    rendered = "? ",
+                    highlight = "DiagnosticInfo",
                 },
             },
         },

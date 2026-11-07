@@ -22,6 +22,10 @@ return {
         },
         ui = {
             enable = false,
-        }
+        },
+        checkbox = {
+            order = { " ", "-", "x", "~", ">", "?", "!" },
+        },
+
     },
 }
