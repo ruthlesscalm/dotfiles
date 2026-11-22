@@ -19,9 +19,6 @@
   ;; Caps Lock = hold numbers layer
   num (layer-while-held numbers)
 
-  ;; X = one-shot Left Control
-  xctl (one-shot 1000 lctl)
-
   ;; B = persistent Shift toggle
   bshift (on-press toggle-virtualkey shift-toggle)
 
