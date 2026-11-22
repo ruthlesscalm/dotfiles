@@ -1,7 +1,7 @@
 vim.keymap.set("n", "<leader>e", "<cmd>Ex<CR>", {desc = "Open File Explorer"}) -- Open Netrw Explorer
 
-vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", {desc = "Save current buffer"}) 
-vim.keymap.set("i", "<C-s>", "<esc><cmd>w<CR>", {desc = "Save current buffer"}) 
+-- vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", {desc = "Save current buffer"}) 
+-- vim.keymap.set("i", "<C-s>", "<esc><cmd>w<CR>", {desc = "Save current buffer"}) 
 
 vim.keymap.set({"n", "x"}, "<leader>c", '"+', {desc = "System clipboard register (+)"})
 vim.keymap.set({"n", "x"}, "<leader>_", '"_', {desc = "Blackhole register (_)"})
@@ -9,7 +9,7 @@ vim.keymap.set({"n", "x"}, "<leader>_", '"_', {desc = "Blackhole register (_)"})
 vim.keymap.set("n", "<leader>bd", "<cmd>bp | bd #<CR>", {desc = "Delete Current buffer"})
 
 -- Remove ctrl+tab shortcut in terminal emualator so that it can be used in neovim to switch buffers
-vim.keymap.set( "n", "<C-Tab>", "<cmd>bnext<CR>", { desc = "Next Buffer" }) 
+vim.keymap.set( "n", "<leader><Tab>", "<cmd>bnext<CR>", { desc = "Next Buffer" }) 
 
 vim.keymap.set("n", "<leader>bo", "<cmd>%bd|e#|bd#<cr>", { desc = "Close all buffers except current" })
 
