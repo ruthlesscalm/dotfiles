@@ -8,6 +8,12 @@ return {
     version = "1.*",
 
     opts = {
+        enabled = function ()
+            if vim.g.completion == false or vim.b.completion == false then
+                return false
+            end
+            return true
+        end,
         keymap = {
             preset = "default",
 
@@ -44,7 +50,7 @@ return {
             enabled = true,
 
             window = {
-                border = "none",
+                border = "rounded",
                 show_documentation = false,
             },
         },

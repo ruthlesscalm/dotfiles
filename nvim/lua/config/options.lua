@@ -38,3 +38,5 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99 -- Start with folds open
+
+vim.opt.showtabline = 0

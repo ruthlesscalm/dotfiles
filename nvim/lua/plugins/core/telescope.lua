@@ -8,6 +8,11 @@ return {
 		-- optional but recommended
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	},
+    opts = {
+        defualts = {
+            file_ignore_patterns = { "node_modules", ".git" },
+        },
+    },
 	keys = {
 		{
 			"<leader>ff",

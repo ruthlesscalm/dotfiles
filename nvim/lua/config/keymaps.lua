@@ -29,3 +29,14 @@ vim.keymap.set("n", "<leader>ld", ":lcd %:p:h<CR>:pwd<CR>", {
 })
 
 vim.keymap.set({"x"}, "<leader>p", "\"_dP", {desc = "Paste without overwriting the default register"})
+
+vim.keymap.set("n", "<leader>tl", function ()
+    if vim.g.completion == true then
+        vim.g.completion = false
+        vim.notify("Completion disabled", vim.log.levels.INFO, {title = "Completion"})
+    else
+        vim.g.completion = true
+        vim.notify("Completion enabled", vim.log.levels.INFO, {title = "Completion"})
+    end
+end)
+

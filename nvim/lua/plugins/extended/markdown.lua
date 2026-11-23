@@ -15,6 +15,14 @@ return {
         max_file_size = 10.0,
         debounce = 100,
 
+        overrides = {
+            buftype = {
+                nofile = {
+                    enabled = false,
+                }
+            }
+        },
+
         -- Better editing experience
         anti_conceal = {
             enabled = true,
