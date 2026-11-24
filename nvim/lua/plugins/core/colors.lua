@@ -32,4 +32,16 @@ return {
 	{
 		"tiagovla/tokyodark.nvim",
 	},
+    {
+        "eldritch-theme/eldritch.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
+	{
+        "oxfist/night-owl.nvim",
+    },
+	{
+        'Yazeed1s/oh-lucy.nvim'
+    }
 }

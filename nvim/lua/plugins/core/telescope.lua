@@ -15,12 +15,12 @@ return {
     },
 	keys = {
 		{
-			"<leader>ff",
+			"<leader>tff",
 			builtin.find_files,
 			desc = "Find Files",
 		},
 		{
-			"<leader>fF",
+			"<leader>tfF",
 			function()
 				builtin.find_files({
 					hidden = true,
@@ -30,54 +30,54 @@ return {
 			desc = "Find All Files",
 		},
 		{
-			"<leader>fg",
+			"<leader>tfg",
 			builtin.live_grep,
 			desc = "Live Grep",
 		},
 		{
-			"<leader>fb",
+			"<leader>tfb",
 			builtin.buffers,
 			desc = "Buffers",
 		},
 		{
-			"<leader>fd",
+			"<leader>tfd",
 			function()
 				builtin.diagnostics({ bufnr = 0 })
 			end,
 			desc = "diagnostics (Current Buffer)",
 		},
 		{
-			"<leader>fD",
+			"<leader>tfD",
 			builtin.diagnostics,
 			desc = "diagnostics (workspace)",
 		},
 		{
-			"<leader>fo",
+			"<leader>tfo",
 			builtin.oldfiles,
 			desc = "Recent Files",
 		},
 		{
-			"<leader>gc",
+			"<leader>tgc",
 			builtin.git_commits,
 			desc = "Git Commits",
 		},
 		{
-			"<leader>gs",
+			"<leader>tgs",
 			builtin.git_status,
 			desc = "Git telescope Status",
 		},
 		{
-			"<leader>gf",
+			"<leader>tgf",
 			builtin.git_files,
 			desc = "Git Files",
 		},
 		{
-			"<leader>fr",
+			"<leader>tfr",
 			builtin.resume,
 			desc = "Resume last telescope",
 		},
 		{
-			"<leader>fa",
+			"<leader>tfa",
 			builtin.builtin,
 			desc = "Open Builtin",
 		},

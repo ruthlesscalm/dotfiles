@@ -1,12 +1,9 @@
 return {
     "saghen/blink.cmp",
-
     dependencies = {
         "rafamadriz/friendly-snippets",
     },
-
     version = "1.*",
-
     opts = {
         enabled = function ()
             if vim.g.completion == false or vim.b.completion == false then
@@ -16,7 +13,6 @@ return {
         end,
         keymap = {
             preset = "default",
-
             ["<C-u>"] = {
                 "scroll_signature_up",
                 "fallback",
@@ -35,17 +31,14 @@ return {
                 "fallback",
             },
         },
-
         appearance = {
             nerd_font_variant = "mono",
         },
-
         completion = {
             documentation = {
                 auto_show = false,
             },
         },
-
         signature = {
             enabled = true,
 
@@ -54,7 +47,6 @@ return {
                 show_documentation = false,
             },
         },
-
         sources = {
             default = {
                 "lsp",
@@ -63,12 +55,10 @@ return {
                 "buffer",
             },
         },
-
         fuzzy = {
             implementation = "prefer_rust_with_warning",
         },
     },
-
     opts_extend = {
         "sources.default",
     },

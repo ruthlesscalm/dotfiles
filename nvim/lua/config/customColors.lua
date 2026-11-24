@@ -1,5 +1,3 @@
--- Render markdown highlight groups
-
 vim.api.nvim_set_hl(0, "RenderMarkdownH1", {
     fg = "#cba6f7",
     bold = true,

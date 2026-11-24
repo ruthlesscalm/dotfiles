@@ -1,17 +1,23 @@
 return {
     {
-        "tpope/vim-fugitive",
+        "NeogitOrg/neogit",
+        cmd = "Neogit",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
         keys = {
             {
                 "<leader>gi",
-                "<cmd>Git<cr>",
-                desc = "Git fugitive Status",
-            }
-        }
+                "<cmd>Neogit<cr>",
+                desc = "Open Neogit",
+            },
+        },
+        opts = {},
     },
     {
         "lewis6991/gitsigns.nvim",
-        event = "bufEnter",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {},
         keys = {
             {
                 "<leader>gd",
