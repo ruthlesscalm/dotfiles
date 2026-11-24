@@ -15,13 +15,13 @@ return {
         max_file_size = 10.0,
         debounce = 100,
 
-        overrides = {
-            buftype = {
-                nofile = {
-                    enabled = false,
-                }
-            }
-        },
+        -- overrides = {
+        --     buftype = {
+        --         nofile = {
+        --             enabled = false,
+        --         }
+        --     }
+        -- },
 
         -- Better editing experience
         anti_conceal = {
@@ -35,14 +35,20 @@ return {
             enabled = true,
             sign = false,
             icons = {
-                "# ",
-                "## ",
-                "### ",
-                "#### ",
-                "##### ",
-                "###### ",
+                "󰎤 ",
+                "󰎧 ",
+                "󰎪 ",
+                "󰎭 ",
+                "󰎱 ",
+                "󰎳 ",
             },
             position = "inline",
+            width = "full",
+            left_pad = { 0, 1, 2, 3, 4, 5 },
+            border = true,
+            border_virtual = true,
+            above = " ",
+            below = " ",
         },
 
         -- Code blocks
@@ -51,8 +57,9 @@ return {
             sign = false,
             style = "full",
             position = "left",
-            width = "full",
-            left_pad = 2,
+            width = "block",
+            min_width = 60,
+            left_pad = 0,
             right_pad = 2,
             language = true,
             language_icon = true,

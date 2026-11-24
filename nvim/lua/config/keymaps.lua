@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>E", "<cmd>Ex<CR>", {desc = "Open File Explorer"}) -- Open Netrw Explorer
+vim.keymap.set("n", "<leader>e", "<cmd>Ex<CR>", {desc = "Open File Explorer"}) -- Open Netrw Explorer
 
 -- vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", {desc = "Save current buffer"}) 
 -- vim.keymap.set("i", "<C-s>", "<esc><cmd>w<CR>", {desc = "Save current buffer"}) 
@@ -8,10 +8,21 @@ vim.keymap.set({"n", "x"}, "<leader>_", '"_', {desc = "Blackhole register (_)"})
 
 vim.keymap.set("n", "<leader>bd", "<cmd>bp | bd #<CR>", {desc = "Delete Current buffer"})
 
--- Remove ctrl+tab shortcut in terminal emualator so that it can be used in neovim to switch buffers
 vim.keymap.set( "n", "<leader><Tab>", "<cmd>bnext<CR>", { desc = "Next Buffer" }) 
 
-vim.keymap.set("n", "<leader>bo", "<cmd>%bd|e#|bd#<cr>", { desc = "Close all buffers except current" })
+vim.keymap.set("n", "<leader>bo", function()
+  local current = vim.api.nvim_get_current_buf()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if
+      buf ~= current
+      and vim.bo[buf].buflisted
+      and vim.bo[buf].buftype ~= "terminal"
+      and not vim.bo[buf].modified
+    then
+      vim.api.nvim_buf_delete(buf, {})
+    end
+  end
+end, { desc = "Close all buffers except current" })
 
 -- vim.keymap.set("v", "<Tab>", ">gv", { desc = "Indent selection" })
 -- vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Un-indent selection" })

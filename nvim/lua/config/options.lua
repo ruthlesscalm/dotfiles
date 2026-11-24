@@ -37,6 +37,20 @@ vim.opt.splitright = true
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldenable = true
-vim.opt.foldlevel = 99 -- Start with folds open
+vim.opt.foldlevel = 99
+vim.o.foldcolumn = "1"
+vim.o.foldlevelstart = 99
+vim.opt.foldtext = ""
+
+-- Order: Signs -> Line Numbers -> Fold Icons -> Space
+vim.opt.statuscolumn = "%s%=%l %C "
+
+vim.opt.fillchars:append({
+	fold = " ",
+	foldopen = "",
+	foldclose = "",
+	foldsep = " ",
+	foldinner = " ",
+})
 
 vim.opt.showtabline = 0
