@@ -21,6 +21,7 @@ local facts = {
 	},
 	{
 		"YOUR IDE IS STILL LOADING.",
+        "While mine is already running.",
 	},
 	{
 		"Mouse users discovered shortcuts exist",
