@@ -15,13 +15,13 @@ return {
         max_file_size = 10.0,
         debounce = 100,
 
-        -- overrides = {
-        --     buftype = {
-        --         nofile = {
-        --             enabled = false,
-        --         }
-        --     }
-        -- },
+        overrides = {
+            buftype = {
+                nofile = {
+                    enabled = false,
+                }
+            }
+        },
 
         -- Better editing experience
         anti_conceal = {
@@ -45,8 +45,6 @@ return {
             position = "inline",
             width = "full",
             left_pad = { 0, 1, 2, 3, 4, 5 },
-            border = true,
-            border_virtual = true,
             above = " ",
             below = " ",
         },
