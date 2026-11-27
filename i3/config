@@ -283,7 +283,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 default_border pixel 1
 
 # thin borders
-# hide_edge_borders both
+hide_edge_borders smart
 
 # give some padding to titles from left
 for_window [class=".*"] title_format "  %title"
