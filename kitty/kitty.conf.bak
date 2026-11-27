@@ -3,7 +3,7 @@
 include current-theme.conf
 # END_KITTY_THEME
 
-font_size 16.0
+font_size 15.0
 # font_family MesloLGM Nerd Font Mono
 
 
@@ -13,9 +13,9 @@ font_size 16.0
 # font_family SauceCodePro Nerd Font Mono
 # font_family Adwaita Mono
 # font_family Noto Sans Mono
-# font_family Maple Mono NF CN
 # font_family JetBrainsMono Nerd Font Mono
-font_family FiraCode Nerd Font Mono
+# font_family FiraCode Nerd Font Mono
+font_family Maple Mono NF CN
 
 disable_ligatures never
 
@@ -30,12 +30,14 @@ cursor_blink_interval 0.5
 # 0 means never stop blinking
 cursor_stop_blinking_after 0  
 # cursor_shape beam
-cursor_shape beam
+# cursor_shape beam
 
 # map alt+t new_tab
 # map alt+w close_tab
 # map f6 launch --location=vsplit
 # map f5 launch --location=hsplit
+
+window_padding_width 0
 
 map ctrl+shift+w no_op
 map ctrl+tab no_op
