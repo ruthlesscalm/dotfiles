@@ -1,3 +1,12 @@
+local function toggleCopilot()
+    if require("copilot.client").is_disabled() then
+        vim.cmd("Copilot enable")
+        vim.notify("Copilot Enabled")
+    else
+        vim.cmd("Copilot disable")
+        vim.notify("Copilot Disabled")
+    end	
+end
 return {
 	"zbirenbaum/copilot.lua",
 	cmd = "Copilot",
@@ -20,14 +29,9 @@ return {
 	end,
 	keys = {
 		{
-			"<leader>ai",
-			"<cmd>Copilot enable<CR><cmd>lua print('Copilot Enabled')<CR>",
-			desc = "Enable Copilot",
-		},
-		{
 			"<leader>ao",
-			"<cmd>Copilot disable<CR><cmd>lua print('Copilot Disabled')<CR>",
-			desc = "Disable Copilot",
+			toggleCopilot,
+			desc = "Toggle Copilot",
 		},
 	},
 }

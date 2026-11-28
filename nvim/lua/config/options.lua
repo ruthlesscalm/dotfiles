@@ -26,7 +26,7 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.updatetime = 250
-vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "80"
 
 -- netrw
 vim.g.netrw_bufsettings = "noma nomod nu rnu nobl nowrap ro" -- nomodifiable nomidified line_number relative_number nobuflisted nowrap ro
